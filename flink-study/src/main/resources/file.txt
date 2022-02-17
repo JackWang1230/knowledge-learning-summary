@@ -1,0 +1,5 @@
+
+
+1.MySqlSource ->createEnumerator 进行一些初始化的工作
+2. MySqlSourceConfigFactory 配置工厂类->createConfig->return MySqlSourceConfig()
+3. MySqlValidator -> validate方法
