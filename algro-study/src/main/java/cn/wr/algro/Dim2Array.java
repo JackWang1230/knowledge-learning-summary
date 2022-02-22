@@ -19,6 +19,7 @@ public class Dim2Array {
                 ints[i][j]=j;
             }
         }
+
         for (int i = 0; i < ints.length; i++) {
             for (int j = 0; j < ints[i].length; j++) {
                 System.out.println(ints[i][j]);
