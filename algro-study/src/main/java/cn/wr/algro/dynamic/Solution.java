@@ -1,4 +1,4 @@
-package cn.wr.algro.dynatinc;
+package cn.wr.algro.dynamic;
 
 /**
  * @author RWang
