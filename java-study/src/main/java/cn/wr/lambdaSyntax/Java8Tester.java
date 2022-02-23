@@ -67,7 +67,8 @@ public class Java8Tester {
             System.out.println("有一个参数，有返回值的 函数式 接口 入参是 a="+a+" 返回值为return 后的内容");
             return "字符串";
         };
-        singleReturnSingleParameter.test(10);
+        String test = singleReturnSingleParameter.test(10);
+        System.out.println(test);
     }
 
     @Test
@@ -79,6 +80,8 @@ public class Java8Tester {
             System.out.println("有一个参数，有返回值的 函数式 接口 入参是 a="+a+" b="+b+" 返回值为return 后的内容");
             return 10;
         };
+        int test = singleReturnMultipleParameter.test(10, 20);
+        System.out.println(test);
     }
 
     public static void main(String[] args) {
