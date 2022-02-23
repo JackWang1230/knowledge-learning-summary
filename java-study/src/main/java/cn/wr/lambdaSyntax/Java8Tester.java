@@ -69,6 +69,23 @@ public class Java8Tester {
         };
         String test = singleReturnSingleParameter.test(10);
         System.out.println(test);
+
+
+
+
+        String line = "***********************************************";
+        String line1 = "***********************************************";
+        String line2 = "***********************************************";
+
+        /**
+         * 如果参数列表中的参数 有且只有一个 可以省略小括号
+         */
+        SingleReturnSingleParameter singleReturnSingleParameter1 = a -> {
+            System.out.println("有一个参数，有返回值的 函数式 接口 入参是 a="+a+" 返回值为return 后的内容");
+            return "字符串";
+        };
+        String test1 = singleReturnSingleParameter1.test(10);
+        System.out.println(test1);
     }
 
     @Test
@@ -82,6 +99,17 @@ public class Java8Tester {
         };
         int test = singleReturnMultipleParameter.test(10, 20);
         System.out.println(test);
+
+        String line = "***********************************************";
+        String line1 = "***********************************************";
+        String line2 = "***********************************************";
+
+        /**
+         * 如果方法体中 只有一条语句 可以省略大括号(如果这条语句是返回语句，那么省略大括号的同时,省略 return 关键字)
+         */
+        SingleReturnMultipleParameter singleReturnMultipleParameter1 = (int a,int b)-> 10;
+        int test1 = singleReturnMultipleParameter1.test(10, 20);
+        System.out.println(test1);
     }
 
     public static void main(String[] args) {
