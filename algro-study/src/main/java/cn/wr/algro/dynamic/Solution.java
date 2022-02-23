@@ -30,6 +30,7 @@ public class Solution {
         dp[0][0] = in.nextInt();
 
         for (int i = 1; i < n; i++) {
+            // 此时的i代码的是二维数组的行数(即第几行)
             for (int j = 0; j <=i ; j++) {
 
                 int num = in.nextInt();
