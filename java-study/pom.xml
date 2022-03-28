@@ -16,6 +16,12 @@
         <maven.compiler.target>8</maven.compiler.target>
         <calcite-core.version>1.26.0</calcite-core.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>elastic.co</id>
+            <url>https://artifacts.elastic.co/maven</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -47,6 +53,30 @@
             <artifactId>flink-streaming-java_2.11</artifactId>
             <version>1.14.2</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>x-pack-transport</artifactId>
+            <version>6.8.0</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.nlpcn</groupId>-->
+<!--            <artifactId>elasticsearch-sql</artifactId>-->
+<!--            <version>6.8.0.0</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>6.8.0</version>
         </dependency>
     </dependencies>
 
