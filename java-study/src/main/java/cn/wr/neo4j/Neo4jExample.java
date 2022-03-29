@@ -1,7 +1,12 @@
 package cn.wr.neo4j;
 
+import org.junit.Test;
 import org.neo4j.driver.*;
+import org.neo4j.driver.summary.ResultSummary;
 
+import java.util.List;
+
+import static org.neo4j.driver.Values.ofList;
 import static org.neo4j.driver.Values.parameters;
 
 /**
@@ -38,13 +43,54 @@ public class Neo4jExample implements AutoCloseable{
         }
     }
 
+    public void addPerson(final String  name){
+        try {
+            Session session = driver.session();
+            session.writeTransaction( tx -> {
+                final ResultSummary name1 = tx.run("CREATE (a:Person {name: $name})", parameters("name", name)).consume();
+
+                return 1;
+            } );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public int addEmployees(String companyName){
+        int employees =0;
+        try {
+            Session session = driver.session();
+            List<Record> persons = session.readTransaction(tx -> {
+                List<Record> list = tx.run("MATCH (a:Person) RETURN a.name as name").list();
+                return list;
+            });
+            for (Record person : persons) {
+                employees +=session.writeTransaction( tx -> {
+                     Result result = tx.run("MATCH (emp:Person){name:$person_name} " +
+                                    "MERGE (com:Company {name:$company_name}) " +
+                                    "MERGE (emp)-[:WORK_FOR]->(com)",
+                            parameters("person_name", person.get("name").asString(),
+                                    "company_name", companyName));
+                     result.consume();
+                     return 1;
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return employees;
+    }
+
     public static void main(String[] args) {
         String url="bolt://192.168.10.248:7687";
         String user = "neo4j";
         String password = "juyin@2020";
         try {
             Neo4jExample neo4jExample = new Neo4jExample(url, user, password);
-            neo4jExample.printGreeting("hello,world");
+            neo4jExample.addPerson("xiaoming");
+//            neo4jExample.printGreeting("hello,world");
         } catch (Exception e) {
             e.printStackTrace();
         }
