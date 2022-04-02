@@ -55,6 +55,8 @@ public class Java8Tester {
             return 10;
         };
         singleReturnNoneParameter.test();
+
+        SingleReturnNoneParameter singleReturnNoneParameter1= ()->10;
     }
 
 

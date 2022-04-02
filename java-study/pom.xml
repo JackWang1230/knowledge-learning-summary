@@ -16,10 +16,24 @@
         <maven.compiler.target>8</maven.compiler.target>
         <calcite-core.version>1.26.0</calcite-core.version>
     </properties>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>elastic.co</id>-->
+<!--            <url>https://artifacts.elastic.co/maven</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+
     <repositories>
         <repository>
-            <id>elastic.co</id>
-            <url>https://artifacts.elastic.co/maven</url>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -74,10 +88,22 @@
         </dependency>
 
         <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>6.8.0</version>
+            <groupId>com.hankcs</groupId>
+            <artifactId>hanlp</artifactId>
+            <version>portable-1.8.3</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.hankcs.hanlp.restful</groupId>-->
+<!--            <artifactId>hanlp-restful</artifactId>-->
+<!--            <version>0.0.8</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.elasticsearch</groupId>-->
+<!--            <artifactId>elasticsearch</artifactId>-->
+<!--            <version>6.8.0</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

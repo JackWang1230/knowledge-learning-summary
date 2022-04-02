@@ -1,10 +1,14 @@
 package cn.wr.neo4j;
 
+import org.apache.flink.shaded.guava30.com.google.common.collect.Lists;
 import org.junit.Test;
 import org.neo4j.driver.*;
 import org.neo4j.driver.summary.ResultSummary;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import static org.neo4j.driver.Values.ofList;
 import static org.neo4j.driver.Values.parameters;
@@ -43,11 +47,13 @@ public class Neo4jExample implements AutoCloseable{
         }
     }
 
-    public void addPerson(final String  name){
+    public void addPerson(String  name,List<String> apps){
         try {
             Session session = driver.session();
             session.writeTransaction( tx -> {
-                final ResultSummary name1 = tx.run("CREATE (a:Person {name: $name})", parameters("name", name)).consume();
+                final ResultSummary name1 = tx.run("CREATE (a:Person {name: $name,apps:$apps})",
+                        parameters("name", name,
+                                "apps",apps)).consume();
 
                 return 1;
             } );
@@ -61,10 +67,7 @@ public class Neo4jExample implements AutoCloseable{
         int employees =0;
         try {
             Session session = driver.session();
-            List<Record> persons = session.readTransaction(tx -> {
-                List<Record> list = tx.run("MATCH (a:Person) RETURN a.name as name").list();
-                return list;
-            });
+            List<Record> persons = session.readTransaction(tx -> tx.run("MATCH (a:Person) RETURN a.name as name").list());
             for (Record person : persons) {
                 employees +=session.writeTransaction( tx -> {
                      Result result = tx.run("MATCH (emp:Person){name:$person_name} " +
@@ -87,9 +90,13 @@ public class Neo4jExample implements AutoCloseable{
         String url="bolt://192.168.10.248:7687";
         String user = "neo4j";
         String password = "juyin@2020";
+        List<String> apps = new ArrayList<>();
+        apps.add("dd");
+        apps.add("aa");
+        apps.add("bb");
         try {
             Neo4jExample neo4jExample = new Neo4jExample(url, user, password);
-            neo4jExample.addPerson("xiaoming");
+            neo4jExample.addPerson("testP",apps);
 //            neo4jExample.printGreeting("hello,world");
         } catch (Exception e) {
             e.printStackTrace();
