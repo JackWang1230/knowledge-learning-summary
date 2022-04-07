@@ -70,7 +70,7 @@ public class Neo4jExample implements AutoCloseable{
             List<Record> persons = session.readTransaction(tx -> tx.run("MATCH (a:Person) RETURN a.name as name").list());
             for (Record person : persons) {
                 employees +=session.writeTransaction( tx -> {
-                     Result result = tx.run("MATCH (emp:Person){name:$person_name} " +
+                     Result result = tx.run("MATCH (emp:Person {name:$person_name}) " +
                                     "MERGE (com:Company {name:$company_name}) " +
                                     "MERGE (emp)-[:WORK_FOR]->(com)",
                             parameters("person_name", person.get("name").asString(),
