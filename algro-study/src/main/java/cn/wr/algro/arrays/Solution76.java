@@ -46,6 +46,8 @@ public class Solution76 {
         int resLeftRight = Integer.MAX_VALUE;//保存最小的left、right的间隔
         int minLeft = 0;//保存间隔最小的符合条件的left
         Map<Character, Integer> windows = new HashMap<>();
+        //  * 输入：s = "A DOB ECODE BA NC", t = "ABC"
+        // * 输出："BANC"
         while (right < sLength) {
             char curChar = s.charAt(right);
             int curNum = windows.getOrDefault(curChar, 0);
