@@ -27,6 +27,7 @@
         <flink.version>1.13.2</flink.version>
         <scala.version>2.11.12</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
+        <elasticsearch.version>6.8.0</elasticsearch.version>
         <hadoop.version>3.0.0-cdh6.3.2</hadoop.version>
     </properties>
 

@@ -12,6 +12,7 @@ import org.apache.flink.util.Collector;
  * @Date 2022/5/11
  */
 
+@Deprecated
 public class CanalTransModelFlatMap extends RichFlatMapFunction<String, CanalDataModel> {
 
     private static final long serialVersionUID = -6955035232169025277L;

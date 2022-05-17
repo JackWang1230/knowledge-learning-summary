@@ -4,9 +4,11 @@ package cn.wr.datastream;
 import cn.wr.filter.GcConfigSkuFilter;
 import cn.wr.flatmap.CanalTransModelFlatMap;
 import cn.wr.flatmap.GcConfigSkuFlatMap;
+import cn.wr.map.CanalTransModelMap;
 import cn.wr.model.CanalDataModel;
 import cn.wr.model.GcConfigSkuStar;
 import cn.wr.sink.GcConfigSkuStarSink;
+import cn.wr.sink.GoodsSkuStarSink;
 import cn.wr.utils.EsSinkUtil;
 import cn.wr.utils.ExecutionEnvUtil;
 import cn.wr.utils.KafkaUtil;
@@ -42,19 +44,18 @@ public class GcConfigSkuJob {
                 return;
             }
             StreamExecutionEnvironment env = ExecutionEnvUtil.getEnv(parameterTool);
+            env.setParallelism(1);
             DataStreamSource<String> canalSource = KafkaUtil.createCanalSource(env)
                     .setParallelism(parameterTool.getInt(STREAM_SOURCE_PARALLELISM));
 
-            // 提取gc_config_sku需要的数据
-            DataStream<CanalDataModel> canalDataModelDataStream = canalSource
-                    .flatMap(new CanalTransModelFlatMap())
-                    .filter(new GcConfigSkuFilter());
+            // 过滤无用数据 提取gc_config_sku需要的数据 并数据转换
+            DataStream<GcConfigSkuStar> gcConfigSKuStar = canalSource
+                    .filter(new GcConfigSkuFilter())
+                    .map(new CanalTransModelMap())
+                    .flatMap(new GcConfigSkuFlatMap());
 
-            // 数据转换据转换
-            DataStream<GcConfigSkuStar> gcConfigSKuStar = canalDataModelDataStream.flatMap(new GcConfigSkuFlatMap());
 
             // 写入es
-//            gcConfigSKuStar.print();
             gcConfigSKuStar
                     .keyBy(GcConfigSkuStar::getSkuNo)
                     .addSink(EsSinkUtil.getSink(gcConfigSKuStar,
@@ -63,9 +64,9 @@ public class GcConfigSkuJob {
                             parameterTool)).name("sink-es");
 
             // 写入polardb
-            // gcConfigSKuStar.addSink(new GoodsSkuStarSink()).name("sink-polardb");
+            gcConfigSKuStar.keyBy(GcConfigSkuStar::getSkuNo).addSink(new GoodsSkuStarSink()).name("sink-polardb");
 
-            env.execute(FLINK_JOB_NAME);
+            env.execute(parameterTool.get(FLINK_JOB_NAME));
 
 
         } catch (Exception e){

@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static cn.wr.constants.PropertiesConstants.INSERT;
+import static cn.wr.constants.PropertiesConstants.UPDATE;
 import static cn.wr.constants.SqlConstants.MANUFACTURER_SQL;
 
 
@@ -25,14 +27,11 @@ import static cn.wr.constants.SqlConstants.MANUFACTURER_SQL;
  * @author RWang
  * @Date 2022/5/12
  */
-
 public class GcConfigSkuFlatMap extends RichFlatMapFunction<CanalDataModel, GcConfigSkuStar> {
 
     private static final long serialVersionUID = 6472986397086050699L;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final static String UPDATE ="UPDATE";
-    private final static String INSERT ="INSERT";
     private final static int ZERO = 0;
     private final static int ONE = 1;
     private final static String APPROVAL_NUMBER_REGEX="(^[\u4e00-\u9fa5]+[A-Za-z]+[0-9]+$)|(^[A-Za-z]+[0-9]+$)|(^[\u4e00-\u9fa5]+[0-9]+$)";
@@ -51,7 +50,15 @@ public class GcConfigSkuFlatMap extends RichFlatMapFunction<CanalDataModel, GcCo
                     gcConfigSkuStar.setIsTradecode(isTradeCode(gcConfigSkuStar.getBarcode())?ONE:ZERO);
                     gcConfigSkuStar.setIsSpecName(StringUtils.isBlank(gcConfigSkuStar.getSpecName())?ZERO:ONE);
                     gcConfigSkuStar.setIsManufacturer(isManufacturer(gcConfigSkuStar.getSkuNo())?ONE:ZERO);
-                    // System.out.println(gcConfigSkuStar.toString());
+//                    byte[] bytes = JSON.toJSONBytes(gcConfigSkuStar, SerializerFeature.WriteMapNullValue);
+//                    String s = new String(bytes);
+//                    System.out.println("=====");
+//                    System.out.println(s);
+//                    System.out.println("=====");
+//                    System.out.println(gcConfigSkuStar.getIsGoodsName());
+//                    System.out.println("=====");
+//                    System.out.println(gcConfigSkuStar.toString());
+//                    System.out.println("=====");
                     collector.collect(gcConfigSkuStar);
 
                 }
@@ -64,6 +71,11 @@ public class GcConfigSkuFlatMap extends RichFlatMapFunction<CanalDataModel, GcCo
 
     /**
      * 校验批准文号
+     *
+     * 批准文号：
+     *     字符类型：汉字、英文、数字 ｜ 英文、数字 ｜ 汉字、数字
+     *     字符长度：13、14、15、16
+     *
      * @param approvalNumber
      * @return
      */
@@ -83,6 +95,11 @@ public class GcConfigSkuFlatMap extends RichFlatMapFunction<CanalDataModel, GcCo
     }
     /**
      * 校验条码号
+     *
+     * 商品条码：
+     *     字符类型：纯数字
+     *     字符长度：8、9、10、12、13、14
+     *
      * @param tradeCode
      * @return
      */
@@ -130,3 +147,4 @@ public class GcConfigSkuFlatMap extends RichFlatMapFunction<CanalDataModel, GcCo
 
     }
 }
+

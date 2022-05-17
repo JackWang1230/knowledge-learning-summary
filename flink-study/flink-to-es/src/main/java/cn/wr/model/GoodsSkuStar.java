@@ -11,7 +11,6 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.annotation.JsonPro
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GoodsSkuStar {
-
     /** sku编号(同gc_ug_spu_goods.goods_no) */
     @JsonProperty("sku_no")
     private String skuNo;

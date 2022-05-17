@@ -18,6 +18,7 @@ public class PropertiesConstants {
     /** 读取监听库表名称*/
     public static final String SCHEMA_CN_UNIONDRUG_MIDDLEED_GOODSCENTER = "cn_uniondrug_middleend_goodscenter";
     public static final String TABLE_GC_CONFIG_SKU = "gc_config_sku";
+    public static final String TABLE_GC_DISABLE_STORE = "gc_disable_store";
 
     /** flink checkpoint 配置 */
     public static final String STREAM_CHECKPOINT_ENABLE = "stream.checkpoint.enable";
@@ -41,6 +42,14 @@ public class PropertiesConstants {
     public static final String FLINK_JOB_NAME = "flink.job.name";
 
 
+    /** sql 常用配置 */
+    public final static String UPDATE ="UPDATE";
+    public final static String INSERT ="INSERT";
+    public final static String DELETE ="DELETE";
+
+    public final static String  GC_CONFIG_SKU="gc_config_sku";
+    public final static String  GC_DISABLE_STORE="gc_disable_store";
+
     /** es 基础配置*/
     public static final String ELASTICSEARCH_BULK_FLUSH_MAX_ACTIONS = "elasticsearch.bulk.flush.max.actions";
     public static final String ELASTICSEARCH_BULK_FLUSH_INTERVAL_MS = "elasticsearch.bulk.flush.interval.ms";
@@ -60,5 +69,8 @@ public class PropertiesConstants {
 
     public static final String ELASTICSEARCH_INDEX_WORD = "elasticsearch.index.word";
     public static final String ELASTICSEARCH_DOCUMENT_TYPE_WORD = "elasticsearch.docs.type.word";
+
+    public static final String ELASTICSEARCH_SEARCH_INDEX_WORD = "elasticsearch.search.index.word";
+    public static final String ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD = "elasticsearch.search.docs.type.word";
 
 }
