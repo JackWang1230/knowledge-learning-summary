@@ -126,7 +126,7 @@ public class UpdateSearchEsSink implements ElasticsearchSinkFunction<BaseJudge> 
         for (String id : ids) {
             UpdateRequest updateRequest=new UpdateRequest();
             updateRequest.index(parameterTool.get(ELASTICSEARCH_SEARCH_INDEX_WORD))
-                    .type(ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD)
+                    .type(parameterTool.get(ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD))
                     .id(id)
                     .doc(XContentFactory.jsonBuilder().startObject().field(CONTROL_STATUS,value).endObject());
             requestIndexer.add(updateRequest);
@@ -144,7 +144,7 @@ public class UpdateSearchEsSink implements ElasticsearchSinkFunction<BaseJudge> 
 
             UpdateRequest updateRequest=new UpdateRequest();
             updateRequest.index(parameterTool.get(ELASTICSEARCH_SEARCH_INDEX_WORD))
-                    .type(ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD)
+                    .type(parameterTool.get(ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD))
                     .id(id)
                     .doc(XContentFactory.jsonBuilder().startObject().field(CONTROL_STATUS,value).endObject());
             requestIndexer.add(updateRequest);
