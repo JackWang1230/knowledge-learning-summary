@@ -166,7 +166,7 @@ public class UpdateSearchEsSink implements ElasticsearchSinkFunction<BaseJudge> 
         if (totalHits>100){
             // 分页查询
             int size =(int)totalHits/100;
-            for (from = 0;  from< size; from++) {
+            for (from = 0;  from< totalHits; from+=100) {
                 getIds(ids,from,merchantId,internalId);
             }
         }else {
