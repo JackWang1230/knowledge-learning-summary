@@ -14,6 +14,7 @@ import java.sql.Types;
 import java.util.Objects;
 
 import static cn.wr.constants.SqlConstants.UPSERT_GOODS_SKU_STAR_SQL;
+import static cn.wr.constants.SqlConstants.UPSERT_GOODS_SKU_STAR_SQL1;
 
 
 /**
@@ -49,7 +50,7 @@ public class GoodsSkuStarSink extends RichSinkFunction<GcConfigSkuStar> {
         PreparedStatement ps = null;
         try {
             connection = DataBasesUtil.getPolarConnection(parameterTool);
-            ps = connection.prepareStatement(UPSERT_GOODS_SKU_STAR_SQL);
+            ps = connection.prepareStatement(UPSERT_GOODS_SKU_STAR_SQL1);
             if (Objects.nonNull(value.getSkuNo())) {
                 ps.setString(1, value.getSkuNo());
             } else {
@@ -61,12 +62,12 @@ public class GoodsSkuStarSink extends RichSinkFunction<GcConfigSkuStar> {
             ps.setInt(5,value.getIsTradecode());
             ps.setInt(6,value.getIsSpecName());
             ps.setInt(7,value.getIsManufacturer());
-            ps.setLong(8,value.getMerchantId());
-            ps.setInt(9,value.getIsGoodsName());
-            ps.setInt(10,value.getIsApprovalNumber());
-            ps.setInt(11,value.getIsTradecode());
-            ps.setInt(12,value.getIsSpecName());
-            ps.setInt(13,value.getIsManufacturer());
+//            ps.setLong(8,value.getMerchantId());
+//            ps.setInt(9,value.getIsGoodsName());
+//            ps.setInt(10,value.getIsApprovalNumber());
+//            ps.setInt(11,value.getIsTradecode());
+//            ps.setInt(12,value.getIsSpecName());
+//            ps.setInt(13,value.getIsManufacturer());
             int i = ps.executeUpdate();
             log.info("Polardb sink num:{}", i);
 

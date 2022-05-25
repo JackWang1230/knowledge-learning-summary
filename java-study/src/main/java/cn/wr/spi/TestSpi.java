@@ -18,6 +18,8 @@ public class TestSpi {
         ServiceLoader<PersonFactory> load = ServiceLoader.load(PersonFactory.class);
         Iterator<PersonFactory> iterator = load.iterator();
         while (iterator.hasNext()) {
+//            PersonFactory next = iterator.next();
+
             iterator.next().eat();
         }
     }

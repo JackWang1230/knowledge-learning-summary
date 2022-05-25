@@ -73,4 +73,16 @@ public class PropertiesConstants {
     public static final String ELASTICSEARCH_SEARCH_INDEX_WORD = "elasticsearch.search.index.word";
     public static final String ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD = "elasticsearch.search.docs.type.word";
 
+
+    public static final String ZOOKEEPER_ZNODE_PARENT = "zookeeper.znode.parent";
+    public static final String HBASE_ZOOKEEPER_QUORUM = "hbase.zookeeper.quorum";
+    public static final String HBASE_CLIENT_RETRIES_NUMBER = "hbase.client.retries.number";
+    public static final String HBASE_MASTER_INFO_PORT = "hbase.master.info.port";
+    public static final String HBASE_ZOOKEEPER_PROPERTY_CLIENTPORT = "hbase.zookeeper.property.clientPort";
+    public static final String HBASE_RPC_TIMEOUT = "hbase.rpc.timeout";
+    public static final String HBASE_CLIENT_SCANNER_CACHING = "hbase.client.scanner.caching";
+    public static final String HBASE_CLIENT_OPERATION_TIMEOUT = "hbase.client.operation.timeout";
+    public static final String HBASE_CLIENT_SCANNER_TIMEOUT_PERIOD = "hbase.client.scanner.timeout.period";
+    public static final String HBASE_CLIENT_THREAD_NUM = "hbase.client.thread.num";
+
 }
