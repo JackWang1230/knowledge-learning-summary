@@ -6,6 +6,9 @@ import org.apache.flink.streaming.connectors.elasticsearch.RequestIndexer;
 import org.apache.flink.util.ExceptionUtils;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.client.Requests;
+import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.util.concurrent.EsRejectedExecutionException;
 
 import java.io.IOException;
@@ -33,6 +36,16 @@ public class RetryRequestFailureHandler implements ActionRequestFailureHandler {
             log.error("### RetryRequestFailureHandler EsRejectedExecutionException actionRequest:{}, onFailure:{}",
                     actionRequest.toString(), throwable);
             requestIndexer.add(new ActionRequest[]{actionRequest});
+
+            // todo 新版本使用案例 待验证
+           /* IndexRequest indexAction = (IndexRequest)actionRequest;
+            String index = indexAction.index();
+            String type = indexAction.type();
+            String id = indexAction.id();
+            BytesReference source = indexAction.source();
+            IndexRequest newIndex = Requests.indexRequest().index(index).type(type).id(id).source(source);
+            requestIndexer.add(newIndex);*/
+
         }
         else if (ExceptionUtils.findThrowable(throwable, ElasticsearchException.class).isPresent()) {
             log.error("### RetryRequestFailureHandler ElasticsearchException actionRequest:{}, onFailure:{}",
