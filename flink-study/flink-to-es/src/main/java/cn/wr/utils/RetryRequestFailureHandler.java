@@ -26,7 +26,7 @@ public class RetryRequestFailureHandler implements ActionRequestFailureHandler {
     }
 
     @Override
-    public void onFailure(ActionRequest actionRequest, Throwable throwable, int i, RequestIndexer requestIndexer) throws Throwable {
+    public void onFailure(ActionRequest actionRequest, Throwable throwable, int restStatusCode, RequestIndexer requestIndexer) throws Throwable {
 
         // 异常1: ES队列满了(Reject异常)，放回队列
         if (ExceptionUtils.findThrowable(throwable, EsRejectedExecutionException.class).isPresent()) {
@@ -37,7 +37,19 @@ public class RetryRequestFailureHandler implements ActionRequestFailureHandler {
         else if (ExceptionUtils.findThrowable(throwable, ElasticsearchException.class).isPresent()) {
             log.error("### RetryRequestFailureHandler ElasticsearchException actionRequest:{}, onFailure:{}",
                     actionRequest.toString(), throwable);
-            requestIndexer.add(new ActionRequest[]{actionRequest});
+            // 批量请求失败 例如(批量插入不存在的的文档(index),会出现死锁现象v7.3.0版本之前
+            // Scheduler只配置了1个工作线程，该线程可能在Flush方法中被阻塞。Flush的run方法内加了BulkProcessor.this同步锁，
+            // 但internalAdd方法也被同一个对象锁定。可能发生的情况是，大量请求通过但internalAdd来获得了锁，
+            // 但发送这批请求时遇到了错误，因此重试逻辑开始了。由于scheduler线程阻塞在Flush方法里，
+            // 导致internalAdd被同步锁定，因此现在当Retry尝试安排重试时无法进行重试，由于Flush正在阻塞scheduler的唯一工作线程。
+            // 进一步导致这里Flush由于正在等待internalAdd完成而无法继续，并且internalAdd无法结束因为他在等待Retry，
+            // 但是Retry也无法结束因为他在等待schedule线程，该线程无法获得，因为它正在等待Flush完成
+
+            // 此时返回的状态404 在这种情况下, 这种数据直接舍弃
+            if( 404 != restStatusCode){
+                requestIndexer.add(new ActionRequest[]{actionRequest});
+            }
+
         }
         else {
             // 异常2: ES超时异常(timeout异常)，放回队列
