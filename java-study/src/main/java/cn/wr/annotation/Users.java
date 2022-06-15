@@ -68,6 +68,9 @@ public class Users {
             sb.append("CREATE TABLE "
                     + (name.length == 0 ? "" : name[name.length - 1]) + "(\n");
         }
+
+        Field[] declaredFields = Users.class.getDeclaredFields();
+
         for (Field field : Users.class.getDeclaredFields()) {
             TableColumn tc = field.getAnnotation(TableColumn.class);
             // 这里就不考虑没有加字段的情况了，如果要加方法类似表名
