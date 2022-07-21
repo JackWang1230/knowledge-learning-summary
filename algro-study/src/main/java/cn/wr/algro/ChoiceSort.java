@@ -37,8 +37,34 @@ public class ChoiceSort {
     }
 
 
+    public int[] selectSort(int[] list){
+
+        for (int i = 0; i < list.length-1; i++) {
+
+            int minPos = i;
+            // 依次进行判断后面的数是否比第一个值小，如果小记录下该值的下标记位置
+            for (int j = i+1; j < list.length; j++) {
+                // 依次进行比较
+                if (list[j]<list[minPos]){
+                    minPos = j;
+                }
+                // 并将最小值放到第一个位置上
+            }
+            // 如果只有一个数没必要排序
+            if (minPos!=i){
+                int tmp= list[i];
+                list[i] = list[minPos];
+                list[minPos] = tmp;
+            }
+
+        }
+
+        return list;
+    }
+
+
     public static void main(String[] args) {
-        int [] list = {1,5,3,2,7};
+        int [] list = {1,5,7,3,2};
         ChoiceSort choiceSort = new ChoiceSort();
         int[] ints = choiceSort.choiceSort(list);
         for (int anInt : ints) {
