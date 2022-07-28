@@ -15,15 +15,26 @@ public class PropertiesConstants {
     public static final String KAFKA_CONFIG_TABLE_GROUP = "kafka.config.table.group";
     public static final String KAFKA_CONFIG_TABLE_OFFSET = "kafka.config.table.offset";
 
+    public static final String KAFKA_CONFIG_STOCK_SERVERS= "kafka.config.stock.servers";
+    public static final String KAFKA_CONFIG_STOCK_TOPICS= "kafka.config.stock.topics";
+    public static final String KAFKA_CONFIG_STOCK_GROUP= "kafka.config.stock.group";
+
     /** 读取监听库表名称*/
     public static final String SCHEMA_CN_UNIONDRUG_MIDDLEED_GOODSCENTER = "cn_uniondrug_middleend_goodscenter";
     public static final String TABLE_GC_CONFIG_SKU = "gc_config_sku";
+    public static final String TABLE_GC_SOURCE_SKU = "gc_source_sku";
     public static final String TABLE_GC_DISABLE_STORE = "gc_disable_store";
+    public static final String TABLE_GC_GOODS_MANAGEMENT = "gc_goods_management";
+    public static final String TABLE_GC_GOODS_MANAGEMENT_STORE = "gc_goods_management_store";
 
     /** flink checkpoint 配置 */
     public static final String STREAM_CHECKPOINT_ENABLE = "stream.checkpoint.enable";
     public static final String STREAM_CHECKPOINT_INTERVAL = "stream.checkpoint.interval";
     public static final String STREAM_CHECKPOINT_PATH = "stream.checkpoint.path";
+
+    /** flink 窗口及定时器 */
+    public static final String STREAM_DELAY_INTERNAL = "stream.delay.internal";
+    public static final String STREAM_WINDOW_INTERNAL = "stream.window.internal";
 
 
     /** mysql 基础配置*/
@@ -36,8 +47,17 @@ public class PropertiesConstants {
     public static final String POLAR_DATABASE_USER = "polar.database.user";
     public static final String POLAR_DATABASE_PASSWORD = "polar.database.password";
 
+
+    /** datacenter polar 基础配置*/
+    public static final String POLAR_DATACENTER_DATABASE_URL = "polar.datacenter.database.url";
+    public static final String POLAR_DATACENTER_DATABASE_USER = "polar.datacenter.database.user";
+    public static final String POLAR_DATACENTER_DATABASE_PASSWORD = "polar.datacenter.database.password";
+
+
     /** flink基础配置 */
+    public static final String STREAM_GLOBAl_PARALLELISM="stream.global.parallelism";
     public static final String STREAM_SOURCE_PARALLELISM="stream.source.parallelism";
+    public static final String STREAM_PROCESS_AGG_PARALLELISM="stream.process.agg.parallelism";
     public static final String STREAM_SINK_PARALLELISM="stream.sink.parallelism";
     public static final String FLINK_JOB_NAME = "flink.job.name";
 
@@ -46,6 +66,16 @@ public class PropertiesConstants {
     public final static String UPDATE ="UPDATE";
     public final static String INSERT ="INSERT";
     public final static String DELETE ="DELETE";
+
+    /** 横线 */
+    public final static String HOR_LINE = "-";
+    /** 英文逗号*/
+    public static final String COMMA_EN = ",";
+
+    // 发送钉钉消息参数
+    public static final String STOCK_ABNORMAL_BOT_URL = "stock.abnormal.bot.url";
+    public static final String STOCK_ABNORMAL_BOT_TITLE = "stock.abnormal.bot.title";
+    public static final String STOCK_ABNORMAL_BOT_SECRET = "stock.abnormal.bot.secret";
 
     public final static String  GC_CONFIG_SKU="gc_config_sku";
     public final static String  GC_DISABLE_STORE="gc_disable_store";
@@ -66,6 +96,7 @@ public class PropertiesConstants {
     public static final String ELASTICSEARCH_SECURITY_ENABLE = "elasticsearch.security.enable";
     public static final String ELASTICSEARCH_SECURITY_USERNAME = "elasticsearch.security.username";
     public static final String ELASTICSEARCH_SECURITY_PASSWORD = "elasticsearch.security.password";
+    public static final String ELASTICSEARCH_PAGE_SIZE = "elasticsearch.page.size";
 
     public static final String ELASTICSEARCH_INDEX_WORD = "elasticsearch.index.word";
     public static final String ELASTICSEARCH_DOCUMENT_TYPE_WORD = "elasticsearch.docs.type.word";
@@ -73,7 +104,10 @@ public class PropertiesConstants {
     public static final String ELASTICSEARCH_SEARCH_INDEX_WORD = "elasticsearch.search.index.word";
     public static final String ELASTICSEARCH_SEARCH_DOCUMENT_TYPE_WORD = "elasticsearch.search.docs.type.word";
 
+    public static final String DATA_PAGE_SIZE = "data.page.size";
 
+
+    // hbase
     public static final String ZOOKEEPER_ZNODE_PARENT = "zookeeper.znode.parent";
     public static final String HBASE_ZOOKEEPER_QUORUM = "hbase.zookeeper.quorum";
     public static final String HBASE_CLIENT_RETRIES_NUMBER = "hbase.client.retries.number";
@@ -84,5 +118,24 @@ public class PropertiesConstants {
     public static final String HBASE_CLIENT_OPERATION_TIMEOUT = "hbase.client.operation.timeout";
     public static final String HBASE_CLIENT_SCANNER_TIMEOUT_PERIOD = "hbase.client.scanner.timeout.period";
     public static final String HBASE_CLIENT_THREAD_NUM = "hbase.client.thread.num";
+
+
+    /* HBase 存储表 */
+    public static final String HBASE_PREFIX = "hbase_";
+    // stock_goods
+    public static final String HBASE_STOCK_GOODS = "hbase_stock_goods";
+
+
+    // redis config
+    public static final String REDIS_IP = "redis.ip";
+    public static final String REDIS_PORT = "redis.port";
+    public static final String REDIS_PASSWORD = "redis.passWord";
+    public static final String REDIS_TIMEOUT = "redis.timeout";
+    public static final String REDIS_DATABASE = "redis.database";
+    public static final String REDIS_GOODS_ALL_DATABASE = "redis.goodsall.database";
+    public static final String REDIS_GOODS_CENTER_DATABASE = "redis.goodscenter.database";
+    public static final String REDIS_POOL_MAXTOTAL = "redis.pool.maxTotal";
+    public static final String REDIS_POOL_MAXIDLE = "redis.pool.maxIdle";
+    public static final String REDIS_POOL_MAXWAITMILLIS = "redis.pool.maxWaitMillis";
 
 }

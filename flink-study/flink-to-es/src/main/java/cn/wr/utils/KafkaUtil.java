@@ -1,11 +1,19 @@
 package cn.wr.utils;
 
+import cn.wr.constants.PropertiesConstants;
+import cn.wr.model.StockData;
+import cn.wr.scheme.StockDeserializerScheme;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.utils.ParameterTool;
+import org.apache.flink.connector.kafka.source.KafkaSource;
+import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
+import org.apache.flink.connector.kafka.source.reader.deserializer.KafkaRecordDeserializationSchema;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.OffsetResetStrategy;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.util.Properties;
@@ -42,5 +50,26 @@ public class KafkaUtil {
             consumer.setStartFromEarliest();
         }
         return env.addSource(consumer);
+    }
+
+    /**
+     * flink 1.14 新版获取kafka 数据源方式
+     *
+     * @param env
+     * @return
+     */
+    public static DataStreamSource<StockData> createKafkaSource(StreamExecutionEnvironment env) {
+
+        ParameterTool parameters = (ParameterTool) env.getConfig().getGlobalJobParameters();
+        KafkaSource<StockData> source = KafkaSource.<StockData>builder()
+                .setBootstrapServers(parameters.get(PropertiesConstants.KAFKA_CONFIG_STOCK_SERVERS))
+                .setGroupId(parameters.get(PropertiesConstants.KAFKA_CONFIG_STOCK_GROUP))
+                .setTopics(parameters.get(PropertiesConstants.KAFKA_CONFIG_STOCK_TOPICS).split(COMMA_EN))
+                .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new StockDeserializerScheme()))
+//                .setStartingOffsets(OffsetsInitializer.earliest())
+                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.LATEST))
+                .build();
+        return env.fromSource(source, WatermarkStrategy.noWatermarks(), "kafka stock source");
+        // .setValueOnlyDeserializer(new StockDeserializerScheme())
     }
 }
