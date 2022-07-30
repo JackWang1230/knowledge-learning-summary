@@ -11,6 +11,7 @@ import org.apache.flink.util.Collector;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author RWang
@@ -24,6 +25,7 @@ public class DelayAbnormalProcess extends KeyedProcessFunction<String, Tuple3<St
     // private ValueState<StockData> stockDataValueState;
     private MapState<StockData,Long> mapState;
     private final Long internal;
+    private final ReentrantLock lock = new ReentrantLock();
 
     public DelayAbnormalProcess(long internal) {
         this.internal = internal;
@@ -44,11 +46,18 @@ public class DelayAbnormalProcess extends KeyedProcessFunction<String, Tuple3<St
     public void onTimer(long timestamp, OnTimerContext ctx, Collector<Tuple2<StockData, Long>> out) throws Exception {
 
         super.onTimer(timestamp, ctx, out);
-        Iterator<Map.Entry<StockData, Long>> iterator = mapState.iterator();
-        while (iterator.hasNext()){
-            Map.Entry<StockData, Long> entry = iterator.next();
-            out.collect(Tuple2.of(entry.getKey(),entry.getValue()));
-            mapState.remove(entry.getKey());
+        lock.lock();
+        try {
+            // 多线程情况下会出现 并发异常 MapState 例如在如下的 iterator中
+            // 会出现删除的同时 在进行修改 导致异常 因此需要加锁
+            Iterator<Map.Entry<StockData, Long>> iterator = mapState.iterator();
+            while (iterator.hasNext()){
+                Map.Entry<StockData, Long> entry = iterator.next();
+                out.collect(Tuple2.of(entry.getKey(),entry.getValue()));
+                mapState.remove(entry.getKey());
+            }
+        } finally {
+            lock.unlock();
         }
        //  out.collect(Tuple2.of(stockDataValueState.value(),timestamp));
 
