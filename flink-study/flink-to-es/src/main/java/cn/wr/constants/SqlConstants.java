@@ -20,4 +20,9 @@ public class SqlConstants {
 
     public static final String UPSERT_GOODS_SKU_STAR_SQL1="insert into gc_merchant_goods_infos (sku_no,merchant_id," +
             "is_goods_name,is_approval_number,is_tradecode,is_spec_name,is_manufacturer) values (?,?,?,?,?,?,?) ";
+
+    public static final String SELECT_ABNORMAL_STOCK = " select stock_no,merchant_id,store_id,internal_id " +
+            "from gc_abnormal_stock_data where is_abnormal = 1";
+
+    public static final String UPDATE_ABNORMAL_STOCK = " update gc_abnormal_stock_data set is_abnormal = 0 where stock_no = ?";
 }

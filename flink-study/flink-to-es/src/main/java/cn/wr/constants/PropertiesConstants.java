@@ -36,6 +36,11 @@ public class PropertiesConstants {
     public static final String STREAM_DELAY_INTERNAL = "stream.delay.internal";
     public static final String STREAM_WINDOW_INTERNAL = "stream.window.internal";
 
+    /**
+     * 数据定时任务时间间隔 单位：(s)
+     */
+    public static final String SCHEDULED_JOB_BASIC = "scheduled.job.internal";
+
 
     /** mysql 基础配置*/
     public static final String MYSQL_DATABASE_URL = "mysql.database.url";
@@ -52,6 +57,15 @@ public class PropertiesConstants {
     public static final String POLAR_DATACENTER_DATABASE_URL = "polar.datacenter.database.url";
     public static final String POLAR_DATACENTER_DATABASE_USER = "polar.datacenter.database.user";
     public static final String POLAR_DATACENTER_DATABASE_PASSWORD = "polar.datacenter.database.password";
+
+    /**
+     * mongodb 基础配置
+     */
+    public static final String MONGO_DATABASE_HOST = "mongo.database.host";
+    public static final String MONGO_DATABASE_PORT = "mongo.database.port";
+    public static final String MONGO_DATABASE_DBNAME = "mongo.database.dbname";
+    public static final String MONGO_DATABASE_USER = "mongo.database.user";
+    public static final String MONGO_DATABASE_PASSWORD = "mongo.database.password";
 
 
     /** flink基础配置 */
