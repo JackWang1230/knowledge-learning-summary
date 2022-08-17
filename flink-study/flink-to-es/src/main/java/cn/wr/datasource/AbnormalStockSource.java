@@ -60,7 +60,7 @@ public class AbnormalStockSource extends RichSourceFunction<AbnormalStock> {
 
         while (EXIT_FLAG) {
 
-            Connection polarConnection = DataBasesUtil.getPolarConnection(parameterTool);
+            Connection polarConnection = DataBasesUtil.getGoodsCenterPolarConnection(parameterTool);
             PreparedStatement ps = null;
             try {
                 while (EXIT_FLAG) {

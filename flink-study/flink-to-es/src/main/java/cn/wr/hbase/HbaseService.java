@@ -1,6 +1,7 @@
 package cn.wr.hbase;
 
 import cn.wr.model.StockGoods;
+import cn.wr.model.price.PriceListDetails;
 import cn.wr.utils.HbaseUtil;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.collections4.CollectionUtils;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static cn.wr.constants.PropertiesConstants.HBASE_STOCK_GOODS;
 import static cn.wr.constants.RedisHbaseConst.HBASE_FAMILY_NAME;
@@ -100,24 +102,26 @@ public class HbaseService {
     /**
      * 批量写入
      * @param tableName
-     * @param putList
+     * @param priceListDetailsList
      */
-    public void batchPut(String tableName, List<Put> putList) {
-        if (CollectionUtils.isEmpty(putList)) {
+    public void batchPutPriceListDetails(String tableName, List<PriceListDetails> priceListDetailsList) {
+        if (CollectionUtils.isEmpty(priceListDetailsList)) {
 //            LOGGER.info("HBaseService batchPut putList is empty, tableName:{}", tableName);
             return;
         }
-//        LOGGER.info("HBaseService batchPut putList tableName:{}, size:{}", tableName, putList.size());
-        /*long start = System.currentTimeMillis();*/
         Table table = null;
         try {
             table = connection.getTable(TableName.valueOf(tableName));
-            table.put(putList);
+            // tenant_id + organization_id + list_id + internal_id + channel + sub_channel
+            List<Put> putList = priceListDetailsList.stream().map(item->this.getPut(item.getDetailKey(), JSON.toJSONString(item)))
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+            if (CollectionUtils.isNotEmpty(putList)) {
+                table.put(putList);
+            }
         } catch (Exception e) {
             logger.error("HBaseService batch put error:{}", e);
         } finally {
-            /*long end = System.currentTimeMillis();
-            LOGGER.info("HBaseService batchPut putList tableName:{}, size:{}, time:{}(ms)", tableName, putList.size(), end - start);*/
             HbaseUtil.close(table, null, null);
         }
 

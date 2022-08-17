@@ -19,6 +19,13 @@ public class PropertiesConstants {
     public static final String KAFKA_CONFIG_STOCK_TOPICS= "kafka.config.stock.topics";
     public static final String KAFKA_CONFIG_STOCK_GROUP= "kafka.config.stock.group";
 
+    /**
+     * 商品中心polardb canal binlog 基础配置
+     */
+    public static final String KAFKA_CONFIG_GOODS_CENTER_CANAL_SERVERS = "kafka.config.goods.center.canal.servers";
+    public static final String KAFKA_CONFIG_GOODS_CENTER_CANAL_TOPICS = "kafka.config.goods.center.canal.topics";
+    public static final String KAFKA_CONFIG_GOODS_CENTER_CANAL_GROUP = "kafka.config.goods.center.canal.group";
+
     /** 读取监听库表名称*/
     public static final String SCHEMA_CN_UNIONDRUG_MIDDLEED_GOODSCENTER = "cn_uniondrug_middleend_goodscenter";
     public static final String TABLE_GC_CONFIG_SKU = "gc_config_sku";
@@ -26,6 +33,13 @@ public class PropertiesConstants {
     public static final String TABLE_GC_DISABLE_STORE = "gc_disable_store";
     public static final String TABLE_GC_GOODS_MANAGEMENT = "gc_goods_management";
     public static final String TABLE_GC_GOODS_MANAGEMENT_STORE = "gc_goods_management_store";
+
+    /**
+     * 监听商品中心polardb
+     *
+     */
+    public static final String SCHEMA_CN_UDC_GSBP_PRICE = "cn_udc_gsbp_price";
+    public static final String TABLE_PRICE_LIST_DETAILS = "price_list_details";
 
     /** flink checkpoint 配置 */
     public static final String STREAM_CHECKPOINT_ENABLE = "stream.checkpoint.enable";
@@ -35,6 +49,13 @@ public class PropertiesConstants {
     /** flink 窗口及定时器 */
     public static final String STREAM_DELAY_INTERNAL = "stream.delay.internal";
     public static final String STREAM_WINDOW_INTERNAL = "stream.window.internal";
+
+
+    /**
+     * 库存上下架 的http url 配置
+     */
+    public static final String HTTP_STOCK_URL = "http.stock.url";
+    public static final String HTTP_SHELVE_URL = "http.shelve.url";
 
     /**
      * 数据定时任务时间间隔 单位：(s)
@@ -48,9 +69,9 @@ public class PropertiesConstants {
     public static final String MYSQL_DATABASE_PASSWORD = "mysql.database.password";
 
     /** polar 基础配置*/
-    public static final String POLAR_DATABASE_URL = "polar.database.url";
-    public static final String POLAR_DATABASE_USER = "polar.database.user";
-    public static final String POLAR_DATABASE_PASSWORD = "polar.database.password";
+    public static final String POLAR_GOODS_CENTER_DATABASE_URL = "polar.goodscenter.database.url";
+    public static final String POLAR_GOODS_CENTER_DATABASE_USER = "polar.goodscenter.database.user";
+    public static final String POLAR_GOODS_CENTER_DATABASE_PASSWORD = "polar.goodscenter.database.password";
 
 
     /** datacenter polar 基础配置*/
@@ -72,6 +93,7 @@ public class PropertiesConstants {
     public static final String STREAM_GLOBAl_PARALLELISM="stream.global.parallelism";
     public static final String STREAM_SOURCE_PARALLELISM="stream.source.parallelism";
     public static final String STREAM_PROCESS_AGG_PARALLELISM="stream.process.agg.parallelism";
+    public static final String STREAM_SINK_DING_PARALLELISM = "stream.sink.ding.parallelism";
     public static final String STREAM_SINK_PARALLELISM="stream.sink.parallelism";
     public static final String FLINK_JOB_NAME = "flink.job.name";
 
@@ -80,6 +102,7 @@ public class PropertiesConstants {
     public final static String UPDATE ="UPDATE";
     public final static String INSERT ="INSERT";
     public final static String DELETE ="DELETE";
+    public static final String UPDATE_DELETE = "UPDATE_DELETE";
 
     /** 横线 */
     public final static String HOR_LINE = "-";

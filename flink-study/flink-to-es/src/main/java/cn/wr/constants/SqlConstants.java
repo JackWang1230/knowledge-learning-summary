@@ -25,4 +25,13 @@ public class SqlConstants {
             "from gc_abnormal_stock_data where is_abnormal = 1";
 
     public static final String UPDATE_ABNORMAL_STOCK = " update gc_abnormal_stock_data set is_abnormal = 0 where stock_no = ?";
+
+    public static final String SELECT_PARTNER_DBNAME = " select dbname from uniondrug_partner.partners where organizationId=? ";
+
+    public static final String SELECT_GOODS_CENTER_STOCK_GOODS = " select merchant_id,store_id,internal_id, quantity,sale_state from cn_ud_mid_stock.stock_goods where " +
+            "stock_no=?";
+
+    public static final String INSERT_ABNORMAL_STOCK_GOODS = "insert into cn_uniondrug_middleend_goodscenter.gc_abnormal_stock_data " +
+            "(stock_no,merchant_id,store_id,internal_id,is_abnormal) " +
+            "values (?,?,?,?,?) on duplicate key update merchant_id=?,store_id=?,internal_id=?,is_abnormal=?";
 }

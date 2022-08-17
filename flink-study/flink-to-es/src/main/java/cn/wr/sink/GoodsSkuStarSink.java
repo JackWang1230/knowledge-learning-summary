@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.Types;
 import java.util.Objects;
 
-import static cn.wr.constants.SqlConstants.UPSERT_GOODS_SKU_STAR_SQL;
 import static cn.wr.constants.SqlConstants.UPSERT_GOODS_SKU_STAR_SQL1;
 
 
@@ -49,7 +48,7 @@ public class GoodsSkuStarSink extends RichSinkFunction<GcConfigSkuStar> {
         Connection connection = null;
         PreparedStatement ps = null;
         try {
-            connection = DataBasesUtil.getPolarConnection(parameterTool);
+            connection = DataBasesUtil.getGoodsCenterPolarConnection(parameterTool);
             ps = connection.prepareStatement(UPSERT_GOODS_SKU_STAR_SQL1);
             if (Objects.nonNull(value.getSkuNo())) {
                 ps.setString(1, value.getSkuNo());

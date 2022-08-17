@@ -1,4 +1,4 @@
-package cn.wr.scheme;
+package cn.wr.schema;
 
 import cn.wr.model.StockData;
 import com.alibaba.fastjson.JSON;
@@ -14,16 +14,16 @@ import java.nio.charset.StandardCharsets;
  * @Date 2022/7/19
  */
 
-public class StockDeserializerScheme implements DeserializationSchema<StockData> {
+public class StockDeserializerSchema implements DeserializationSchema<StockData> {
     private static final long serialVersionUID = 5935203204849803042L;
-    private static final Logger logger = LoggerFactory.getLogger(StockDeserializerScheme.class);
+    private static final Logger logger = LoggerFactory.getLogger(StockDeserializerSchema.class);
 
     @Override
     public StockData deserialize(byte[] message) {
         try {
             return JSON.parseObject(new String(message, StandardCharsets.UTF_8), StockData.class);
         }catch (Exception e){
-            logger.error("StockDeserializerScheme msg:{} Exception:{}",new String(message,StandardCharsets.UTF_8),e);
+            logger.error("StockDeserializerSchema msg:{} Exception:{}",new String(message,StandardCharsets.UTF_8),e);
             return null;
         }
 

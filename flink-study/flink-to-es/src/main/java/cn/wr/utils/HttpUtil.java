@@ -1,6 +1,8 @@
 package cn.wr.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -17,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -98,6 +101,55 @@ public class HttpUtil {
             catch (UnsupportedEncodingException e) {
                 logger.error("### HttpUtils doPost UnsupportedEncodingException:{0}", e);
             }
+        }
+        try {
+            // httpClient对象执行post请求,并返回响应参数对象
+            httpResponse = httpClient.execute(httpPost);
+            // 从响应对象中获取响应内容
+            HttpEntity entity = httpResponse.getEntity();
+            result = EntityUtils.toString(entity);
+        }
+        catch (ClientProtocolException e) {
+            logger.error("### HttpUtils doPost ClientProtocolException:{0}", e);
+        }
+        catch (IOException e) {
+            logger.error("### HttpUtils doPost IOException:{0}", e);
+        }
+        finally {
+            close(httpClient, httpResponse);
+        }
+        return result;
+    }
+
+    public static String doPost(String url , List<Map<String,Object>> listParamMap){
+
+        CloseableHttpClient httpClient = null;
+        CloseableHttpResponse httpResponse = null;
+        String result = "";
+        // 创建httpClient实例
+        httpClient = HttpClients.createDefault();
+        // 创建httpPost远程连接实例
+        HttpPost httpPost = new HttpPost(url);
+        // 配置请求参数实例
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(35000)// 设置连接主机服务超时时间
+                .setConnectionRequestTimeout(35000)// 设置连接请求超时时间
+                .setSocketTimeout(60000)// 设置读取数据连接超时时间
+                .build();
+        // 为httpPost实例设置配置
+        httpPost.setConfig(requestConfig);
+        // 封装post请求参数
+        if (null != listParamMap && listParamMap.size() > 0) {
+            // 为httpPost设置封装好的请求参数
+            JSONArray jsonArray = new JSONArray();
+            listParamMap.forEach(json->{
+                JSONObject bodyObj = new JSONObject(json);
+                jsonArray.add(bodyObj);
+            });
+            StringEntity entity = new StringEntity(jsonArray.toString(),"utf-8");
+            entity.setContentEncoding("UTF-8");
+            entity.setContentType("application/json");//发送json数据需要设置contentType
+            // new UrlEncodedFormEntity(new ArrayList<>())
+            httpPost.setEntity(entity);
         }
         try {
             // httpClient对象执行post请求,并返回响应参数对象

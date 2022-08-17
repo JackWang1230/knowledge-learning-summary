@@ -6,6 +6,7 @@ import cn.wr.flatmap.CompareStockDataFlatMap;
 import cn.wr.flatmap.DelayDataCompareFlatMap;
 import cn.wr.flatmap.StockDataTransFlatMap;
 import cn.wr.model.StockData;
+import cn.wr.process.AbnormalData2Mysql;
 import cn.wr.process.AbnormalDataDingProcess;
 import cn.wr.process.DelayAbnormalProcess;
 import cn.wr.utils.ExecutionEnvUtil;
@@ -72,9 +73,13 @@ public class StockDataCheckJob {
                     .keyBy(f -> f.f0.getMerchantId()+f.f0.getStoreId()+f.f0.getInternalId())
                     .flatMap(new DelayDataCompareFlatMap());
 
-            // 发送钉钉告警
+            // 入库
             abnormalDelayDingStockData
-                    .process(new AbnormalDataDingProcess());
+                    .process(new AbnormalData2Mysql()).setParallelism(parameterTool.getInt(STREAM_SINK_DING_PARALLELISM,1));
+
+            // 发送钉钉告警
+//            abnormalDelayDingStockData
+//                    .process(new AbnormalDataDingProcess());
 
             env.execute("[PRD][KAFKA] - abnormal stock data dingTalk msg");
 

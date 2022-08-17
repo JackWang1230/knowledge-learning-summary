@@ -1,8 +1,10 @@
 package cn.wr.utils;
 
 import cn.wr.constants.PropertiesConstants;
+import cn.wr.model.CanalDataModel;
 import cn.wr.model.StockData;
-import cn.wr.scheme.StockDeserializerScheme;
+import cn.wr.schema.CanalDeserializerSchema;
+import cn.wr.schema.StockDeserializerSchema;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.utils.ParameterTool;
@@ -65,11 +67,30 @@ public class KafkaUtil {
                 .setBootstrapServers(parameters.get(PropertiesConstants.KAFKA_CONFIG_STOCK_SERVERS))
                 .setGroupId(parameters.get(PropertiesConstants.KAFKA_CONFIG_STOCK_GROUP))
                 .setTopics(parameters.get(PropertiesConstants.KAFKA_CONFIG_STOCK_TOPICS).split(COMMA_EN))
-                .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new StockDeserializerScheme()))
+                .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new StockDeserializerSchema()))
 //                .setStartingOffsets(OffsetsInitializer.earliest())
                 .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.LATEST))
                 .build();
         return env.fromSource(source, WatermarkStrategy.noWatermarks(), "kafka stock source");
-        // .setValueOnlyDeserializer(new StockDeserializerScheme())
+        // .setValueOnlyDeserializer(new StockDeserializerSchema())
+    }
+
+    /**
+     * flink 1.14 新版本监听 商品中心的canal数据
+     * @param env 运行环境
+     * @return DataStreamSource
+     */
+    public static DataStreamSource<CanalDataModel> createGoodsCenterKafkaCanalSource(StreamExecutionEnvironment env) {
+
+        ParameterTool parameters = (ParameterTool) env.getConfig().getGlobalJobParameters();
+        KafkaSource<CanalDataModel> build = KafkaSource.<CanalDataModel>builder()
+                .setBootstrapServers(parameters.get(PropertiesConstants.KAFKA_CONFIG_GOODS_CENTER_CANAL_SERVERS))
+                .setGroupId(parameters.get(PropertiesConstants.KAFKA_CONFIG_GOODS_CENTER_CANAL_GROUP))
+                .setTopics(parameters.get(PropertiesConstants.KAFKA_CONFIG_GOODS_CENTER_CANAL_TOPICS).split(COMMA_EN))
+                .setDeserializer(KafkaRecordDeserializationSchema.valueOnly(new CanalDeserializerSchema()))
+                .setStartingOffsets(OffsetsInitializer.committedOffsets(OffsetResetStrategy.LATEST))
+                .build();
+        return env.fromSource(build, WatermarkStrategy.noWatermarks(), "kafka polar_db goodCenter canal source");
+        // .setValueOnlyDeserializer(new StockDeserializerSchema())
     }
 }
