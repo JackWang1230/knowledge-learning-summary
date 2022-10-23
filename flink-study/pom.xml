@@ -138,6 +138,13 @@
             <version>${mysql.version}</version>
         </dependency>
 
+        <!-- redis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+
         <!-- common-lang3-->
         <dependency>
             <groupId>org.apache.commons</groupId>

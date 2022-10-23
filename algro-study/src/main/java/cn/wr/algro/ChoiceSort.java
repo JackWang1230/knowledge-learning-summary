@@ -62,6 +62,28 @@ public class ChoiceSort {
         return list;
     }
 
+    public int[] choiceSort1(int[] list){
+        // 4 2,1 3,5
+        int length = list.length;
+
+        int minPos = 0;
+        for (int i = 0; i < length; i++) {
+             //minPos = i;
+            for (int j = 0; j < length; j++) {
+                // 找出最小位置
+                if (list[j]<list[minPos]){
+                    int tmp = list[j];
+                    list[minPos] = tmp;
+                    list[j] = list[minPos];
+                }
+            }
+
+        }
+        return list;
+
+
+    }
+
 
     public static void main(String[] args) {
         int [] list = {1,5,7,3,2};
