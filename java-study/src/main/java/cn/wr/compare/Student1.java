@@ -54,8 +54,10 @@ public class Student1 implements Comparable<Student1>{
         //如果被比较对象的年龄o.age小于this.age,返回-1
         //通过修改返回值，可以实现升序或降序排序
         if (this.age < o.age) {
+            // o.age-this.age>0 后面的值比前面的值大 返回负数则降序
             return -1;
         } else if (this.age > o.age) {
+            // o.age-this.age<0 后面的值比前面的值小 返回正数 升序
             return 1;
         }
         return 0;
