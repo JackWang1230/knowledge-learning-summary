@@ -1,5 +1,7 @@
 package cn.wr.compare;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -7,7 +9,7 @@ import java.util.Collections;
  * @author : WangRui
  * @date : 2022/2/27
  */
-
+@Data
 public class TestCompare1 {
 
     public static void main(String[] args) {
