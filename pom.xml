@@ -19,6 +19,7 @@
         <module>algro-study</module>
         <module>java-study</module>
         <module>hive-study</module>
+        <module>spring-study</module>
     </modules>
 
     <properties>
