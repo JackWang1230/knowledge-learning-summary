@@ -1,4 +1,4 @@
-package com.wr.springstudy;
+package com.wr;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
