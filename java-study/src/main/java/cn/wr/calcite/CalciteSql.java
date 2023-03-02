@@ -31,15 +31,15 @@ public class CalciteSql {
         } catch (SqlParseException e) {
             e.printStackTrace();
         }
-        BigDecimal bigDecimal = new BigDecimal(StringUtils.isBlank(null)?0:1);
-        String json ="{\"id\":\"11\",\"name\":\"jack\",\"salary\":[{\"month\":\"1\",\"amount\":1234},{\"month\":\"2\",\"amount\":2345}]}";
+        BigDecimal bigDecimal = new BigDecimal(StringUtils.isBlank(null) ? 0 : 1);
+        String json = "{\"id\":\"11\",\"name\":\"jack\",\"salary\":[{\"month\":\"1\",\"amount\":1234},{\"month\":\"2\",\"amount\":2345}]}";
 
         JSONObject jsonObject = JSONObject.parseObject(json);
 
 
         String dd = jsonObject.getString("dd");
         System.out.println(dd);
-        BigDecimal dd1= new BigDecimal(StringUtils.isBlank(dd) ? "0.00" :dd);
+        BigDecimal dd1 = new BigDecimal(StringUtils.isBlank(dd) ? "0.00" : dd);
         System.out.println(dd1);
 
 
@@ -55,7 +55,7 @@ public class CalciteSql {
         BigDecimal ddsds = jsonObject.getBigDecimal("ddsds");
         if (ddsds == null) {
             System.out.println("yes");
-        }else {
+        } else {
             System.out.println("no");
         }
 

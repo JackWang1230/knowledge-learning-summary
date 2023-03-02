@@ -13,10 +13,10 @@ public class RemoveData {
 
 
     @Test
-    public void removeElems () throws InterruptedException {
+    public void removeElems() throws InterruptedException {
 
         ArrayList<String> last = new ArrayList<>();
-        while (true){
+        while (true) {
             ArrayList<String> current = new ArrayList<>();
             // 最开始的时候 是没有值的
             // 第一次之后，数据会被先存入current ,之后进行比较last的是否有值
@@ -32,16 +32,16 @@ public class RemoveData {
 //        last.add("aba");
 
             last.removeAll(current);
-            if (last.size()>0){
+            if (last.size() > 0) {
                 // 有数据
                 for (String s : last) {
-                    System.out.println(s+" 任务挂了");
+                    System.out.println(s + " 任务挂了");
                 }
                 last.clear();
                 last.addAll(current);
                 current.clear();
                 System.out.println("eewew");
-            }else {
+            } else {
                 last.addAll(current);
                 current.clear();
                 System.out.println("dd");

@@ -39,6 +39,8 @@ public class AbnormalStockSource extends RichSourceFunction<AbnormalStock> {
     public void open(Configuration parameters) throws Exception {
         super.open(parameters);
         parameterTool = (ParameterTool) getRuntimeContext().getExecutionConfig().getGlobalJobParameters();
+        int numberOfParallelSubtasks = getRuntimeContext().getNumberOfParallelSubtasks();
+        int indexOfThisSubtask = getRuntimeContext().getIndexOfThisSubtask();
         TIME_DIFFERENCE_SECOND = parameterTool.getLong(SCHEDULED_JOB_BASIC);
     }
 

@@ -12,6 +12,7 @@ public class TestSpi {
 
     /**
      * SPI Service Provide Interface(flink connector中大量使用该模式)
+     *
      * @param args
      */
     public static void main(String[] args) {

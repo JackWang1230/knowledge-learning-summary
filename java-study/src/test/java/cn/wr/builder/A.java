@@ -12,16 +12,17 @@ public class A {
     private String a;
     private Properties props;
 
-    public A setProps(Properties props){
-        this.props=props;
+    public A setProps(Properties props) {
+        this.props = props;
         return this;
     }
 
-    public A setA(String a){
+    public A setA(String a) {
         this.a = a;
         return this;
     }
-    public void getNums(){
+
+    public void getNums() {
         System.out.println("11");
     }
 

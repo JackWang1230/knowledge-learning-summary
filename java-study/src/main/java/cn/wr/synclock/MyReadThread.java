@@ -11,19 +11,21 @@ import java.lang.reflect.TypeVariable;
  * @Date 2022/3/4
  */
 
-public class MyReadThread implements Runnable{
+public class MyReadThread implements Runnable {
 
 
     private int count;
-    public MyReadThread(){
-        this.count=0;
+
+    public MyReadThread() {
+        this.count = 0;
     }
+
     @Override
     public void run() {
-        synchronized (this){
+        synchronized (this) {
             for (int i = 0; i < 5; i++) {
                 try {
-                    System.out.println(Thread.currentThread().getName()+":"+count++);
+                    System.out.println(Thread.currentThread().getName() + ":" + count++);
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

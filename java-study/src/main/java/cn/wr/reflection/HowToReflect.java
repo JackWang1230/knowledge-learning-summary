@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 
 /**
  * 基于反射调用获取类的属性
+ *
  * @author RWang
  * @Date 2022/6/7
  */
@@ -39,7 +40,7 @@ public class HowToReflect {
         for (Method declaredMethod : declaredMethods) {
 
             if (declaredMethod.getName().equals("getGirlFriendV1"))
-            declaredMethod.invoke(son);
+                declaredMethod.invoke(son);
         }
 
         for (Method method : declaredMethods1) {
@@ -48,11 +49,10 @@ public class HowToReflect {
 //            System.out.println("=========>>>>");
             if (method.getName().equals("getSon"))
                 method.invoke(son);
-            if (method.getName().equals("getGirlFriendV1")){
+            if (method.getName().equals("getGirlFriendV1")) {
                 method.invoke(son);
                 System.out.println("可以获取子类");
             }
-
 
 
         }

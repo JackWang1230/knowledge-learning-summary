@@ -8,9 +8,9 @@ package cn.wr.basic;
 public class FinalWordTest {
 
     // 被final 修改后的成员变量 不可更改
-    private final int a=10 ;
+    private final int a = 10;
 
-    private void testData(){
+    private void testData() {
 
     }
 

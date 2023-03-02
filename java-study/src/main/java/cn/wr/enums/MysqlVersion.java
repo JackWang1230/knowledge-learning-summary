@@ -12,10 +12,10 @@ public enum MysqlVersion {
     private String version;
 
     MysqlVersion(String version) {
-        this.version =version;
+        this.version = version;
     }
 
-    public String getVersion(){
+    public String getVersion() {
         return version;
     }
 
@@ -26,6 +26,7 @@ public enum MysqlVersion {
         System.out.println(version);
         String version1 = V5.getVersion();
         System.out.println(version1);
+
     }
 
 }

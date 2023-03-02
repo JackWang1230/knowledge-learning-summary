@@ -7,5 +7,5 @@ package cn.wr.lambdaSyntax;
 
 @FunctionalInterface
 public interface NoneReturnMultipleParameter {
-    void test(int a,int b);
+    void test(int a, int b);
 }

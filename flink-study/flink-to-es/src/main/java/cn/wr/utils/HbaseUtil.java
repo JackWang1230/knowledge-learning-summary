@@ -55,7 +55,7 @@ public class HbaseUtil {
                     if (null == conn) {
                         log.info("hbase create connection");
                         ExecutorService pool = Executors.newFixedThreadPool(parameterTool.getInt(HBASE_CLIENT_THREAD_NUM));
-                        ConnectionFactory.createConnection(hbaseConfig(parameterTool), pool);
+                        conn = ConnectionFactory.createConnection(hbaseConfig(parameterTool), pool);
                     }
                 }
             }

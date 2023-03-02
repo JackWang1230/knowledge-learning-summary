@@ -11,14 +11,14 @@ public abstract class Son<T> implements Parent<T> {
 
     private long aaa;
 
-    public Son(Time ss){
-        this.aaa =Long.MIN_VALUE+ ss.toMilliseconds();
+    public Son(Time ss) {
+        this.aaa = Long.MIN_VALUE + ss.toMilliseconds();
     }
 
     public abstract long print(T element);
 
     @Override
-    public final long print(T dd,long aa) {
+    public final long print(T dd, long aa) {
         long print = print(dd);
         if (print > aaa) {
             aaa = print;

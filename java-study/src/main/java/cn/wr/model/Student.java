@@ -13,7 +13,7 @@ import lombok.Data;
 public class Student {
 
     private String name;
-    private int age=10;
+    private int age = 10;
     private float height;
 
 //    public static void main(String[] args) throws JsonProcessingException {

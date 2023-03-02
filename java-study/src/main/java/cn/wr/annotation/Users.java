@@ -9,11 +9,11 @@ import java.lang.reflect.Field;
 
 @TableName(name = "USERS")
 public class Users {
-    @TableColumn(ColumnName="id",ColumnType = ColumnType.Int)
+    @TableColumn(ColumnName = "id", ColumnType = ColumnType.Int)
     @Constraints(primarykey = true)
     public int id;
 
-    @TableColumn(ColumnName ="name",ColumnType = ColumnType.String,value = 50)
+    @TableColumn(ColumnName = "name", ColumnType = ColumnType.String, value = 50)
     public String name;
     @TableColumn(ColumnName = "password", ColumnType = ColumnType.String, value = 50)
     public String password;
@@ -91,7 +91,7 @@ public class Users {
             if (con != null) {
                 if (con.primarykey()) {
                     sb.append(" PRIMARY KEY");
-                }else if (!con.allowNull()) {
+                } else if (!con.allowNull()) {
                     sb.append(" NOT NULL");
                 }
                 if (con.unique()) {
@@ -100,7 +100,7 @@ public class Users {
             }
             sb.append(",\n");
         }
-        sb.delete(sb.lastIndexOf(",\n"), sb.lastIndexOf(",\n")+",\n".length());
+        sb.delete(sb.lastIndexOf(",\n"), sb.lastIndexOf(",\n") + ",\n".length());
         sb.deleteCharAt(sb.lastIndexOf(","));
         sb.append(")\n");
         System.out.println(new String(sb));

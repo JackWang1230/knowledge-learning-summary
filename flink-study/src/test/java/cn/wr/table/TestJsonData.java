@@ -1,6 +1,4 @@
 package cn.wr.table;
-
-import org.apache.flink.formats.json.JsonRowDataDeserializationSchema;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.JsonNodeType;
@@ -22,7 +20,7 @@ public class TestJsonData {
         byte[] bytes = canalJson.getBytes();
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(bytes);
-        JsonRowDataDeserializationSchema jsonDeserializer = null;
+//        JsonRowDataDeserializationSchema jsonDeserializer = null;
 //        JsonRowDataDeserializationSchema jsonRowDataDeserializationSchema = new JsonRowDataDeserializationSchema();
 //        jsonDeserializer.deserialize(bytes)
 

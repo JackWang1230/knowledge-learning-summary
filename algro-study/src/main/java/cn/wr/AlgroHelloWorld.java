@@ -15,9 +15,9 @@ public class AlgroHelloWorld {
         }
         int maxLength =1;
         for (int j = i; j < nums.length; j++) {
-                if (nums[j]>nums[i]){
-                   maxLength =Math.max(maxLength,l(nums,j)+1);
-                }
+            if (nums[j]>nums[i]){
+                maxLength =Math.max(maxLength,l(nums,j)+1);
+            }
         }
         return maxLength;
     }
@@ -30,7 +30,7 @@ public class AlgroHelloWorld {
         int value=1;
         for (int i = 0; i < m.length; i++) {
             AlgroHelloWorld algroHelloWorld = new AlgroHelloWorld();
-            value=Math.max(value,algroHelloWorld.l(m,i));
+            value = Math.max(value, algroHelloWorld.l(m, i));
         }
         System.out.println(value);
 

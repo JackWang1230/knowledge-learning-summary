@@ -84,8 +84,9 @@ public class ExecutionEnvUtil {
             env.enableCheckpointing(parameterTool.getLong(STREAM_CHECKPOINT_INTERVAL,6000)
                     , CheckpointingMode.EXACTLY_ONCE);
         }
-       EmbeddedRocksDBStateBackend embeddedRocksDBStateBackend = new EmbeddedRocksDBStateBackend();
-       embeddedRocksDBStateBackend.isIncrementalCheckpointsEnabled();
+       EmbeddedRocksDBStateBackend embeddedRocksDBStateBackend =
+               new EmbeddedRocksDBStateBackend(true);
+//       embeddedRocksDBStateBackend.isIncrementalCheckpointsEnabled();
        env.setStateBackend(embeddedRocksDBStateBackend);
        env.getCheckpointConfig().setCheckpointStorage(parameterTool.get(STREAM_CHECKPOINT_PATH));
        env.getConfig().setGlobalJobParameters(parameterTool);

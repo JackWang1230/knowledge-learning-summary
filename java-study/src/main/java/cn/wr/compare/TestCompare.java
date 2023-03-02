@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @Date 2022/1/27
  */
 
-public class TestCompare implements Comparable<Student>{
+public class TestCompare implements Comparable<Student> {
     @Override
     public int compareTo(Student o) {
 //        Collections.sort();

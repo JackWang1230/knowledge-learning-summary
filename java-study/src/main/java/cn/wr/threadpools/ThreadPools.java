@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPools {
 
     @Test
-    public void testThreadPools(){
+    public void testThreadPools() {
         ScheduledExecutorService pool = Executors.newScheduledThreadPool(3);
         pool.scheduleAtFixedRate(new Runnable() {
             @Override
@@ -34,30 +34,28 @@ public class ThreadPools {
 
         ArrayList<String> last = new ArrayList<>();
         ScheduledExecutorService service = Executors.newScheduledThreadPool(4);
-        service.scheduleAtFixedRate(()->{
+        service.scheduleAtFixedRate(() -> {
             ArrayList<String> current = new ArrayList<>();
             current.add("ab");
             current.add("bc");
 
             last.removeAll(current);
-            if (last.size()>0){
+            if (last.size() > 0) {
                 // 有数据
                 for (String s : last) {
-                    System.out.println(s+" 任务挂了");
+                    System.out.println(s + " 任务挂了");
                 }
                 last.clear();
                 last.addAll(current);
                 current.clear();
                 System.out.println("eewew");
-            }else {
+            } else {
                 last.addAll(current);
                 current.clear();
                 System.out.println("无异常");
             }
             System.out.println(Thread.currentThread().getName());
         }, 0, 1, TimeUnit.MINUTES);
-
-
 
 
     }

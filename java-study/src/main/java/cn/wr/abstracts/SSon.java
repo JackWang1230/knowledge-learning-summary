@@ -7,7 +7,7 @@ import org.apache.flink.api.common.time.Time;
  * @Date 2022/2/11
  */
 
-public class SSon<T> extends Son<T>{
+public class SSon<T> extends Son<T> {
 
     public SSon(Time ss) {
         super(ss);
@@ -29,7 +29,7 @@ public class SSon<T> extends Son<T>{
                 return element;
             }
         };
-        son.print(100L,300);
+        son.print(100L, 300);
     }
 
 

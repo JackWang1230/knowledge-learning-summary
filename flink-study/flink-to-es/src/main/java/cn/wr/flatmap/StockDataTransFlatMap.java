@@ -31,13 +31,14 @@ public class StockDataTransFlatMap extends RichFlatMapFunction<StockData, Tuple2
             return;
         }
         // 为了区分是库存数量 和 库存上下架状态 单独判断 状态字段
-        String flag= "";
+//        String flag= "";
         // 推送过来是上下架状态
-        if (StringUtils.isBlank(value.getQuantity())){
-            flag = "state";
-        }else {
-            flag= "quantity";
-        }
+//        if (StringUtils.isBlank(value.getQuantity())){
+//            flag = "state";
+//        }else {
+//            flag= "quantity";
+//        }
+        String flag = StringUtils.isBlank(value.getQuantity())? "state":"quantity";
 
         String stockNo= value.getMerchantId()+HOR_LINE+value.getStoreId()+HOR_LINE+value.getInternalId()+HOR_LINE+flag;
         collector.collect(Tuple2.of(stockNo,value));

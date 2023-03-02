@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
 public @interface TableColumn {
 
     public String ColumnName();
+
     public int value() default 0;
+
     public ColumnType ColumnType();
 }

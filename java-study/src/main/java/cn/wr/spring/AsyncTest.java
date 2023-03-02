@@ -16,9 +16,9 @@ public class AsyncTest {
 
 
     @Async
-    public Future<String> sayHello() throws InterruptedException{
+    public Future<String> sayHello() throws InterruptedException {
 
-        int thinking=2;
+        int thinking = 2;
         return new AsyncResult<String>("d");
     }
 }

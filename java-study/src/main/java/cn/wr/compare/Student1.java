@@ -5,11 +5,12 @@ package cn.wr.compare;
  * @date : 2022/2/27
  */
 
-public class Student1 implements Comparable<Student1>{
+public class Student1 implements Comparable<Student1> {
 
     private String stuName;
     private int age;
     private String major;
+
     public Student1(String stuName, int age, String major) {
 
         this.stuName = stuName;

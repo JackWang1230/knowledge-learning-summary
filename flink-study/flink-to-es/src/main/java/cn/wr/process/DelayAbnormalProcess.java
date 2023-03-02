@@ -3,6 +3,8 @@ package cn.wr.process;
 import cn.wr.model.StockData;
 import org.apache.flink.api.common.state.MapState;
 import org.apache.flink.api.common.state.MapStateDescriptor;
+import org.apache.flink.api.common.state.ValueState;
+import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.configuration.Configuration;
@@ -22,7 +24,7 @@ public class DelayAbnormalProcess extends KeyedProcessFunction<String, Tuple3<St
 
 
     private static final long serialVersionUID = 7233046503397766368L;
-    // private ValueState<StockData> stockDataValueState;
+//    private ValueState<StockData> stockDataValueState;
     private MapState<StockData,Long> mapState;
     private final Long internal;
     private final ReentrantLock lock = new ReentrantLock();

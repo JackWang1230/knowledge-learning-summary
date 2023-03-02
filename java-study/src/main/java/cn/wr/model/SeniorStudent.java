@@ -12,7 +12,7 @@ import lombok.Data;
 
 
 @Builder
-public class SeniorStudent  extends Student{
+public class SeniorStudent extends Student {
     private String level;
 
 

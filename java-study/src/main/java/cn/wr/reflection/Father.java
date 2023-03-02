@@ -14,7 +14,7 @@ public class Father {
     private int age;
     public String job;
 
-    public void getSon(){
+    public void getSon() {
         System.out.println("born boy");
     }
 }

@@ -8,15 +8,16 @@ package cn.wr.abstracts;
 public class Sun {
 
     /**
-     *   flink 中 StreamExecutionEnvironment 实则就是设计模式中单例
+     * flink 中 StreamExecutionEnvironment 实则就是设计模式中单例
+     *
      * @return
      */
-    public static Sun getAbc(){
+    public static Sun getAbc() {
         System.out.println("");
         return new Sun();
     }
 
-    public void execute(){
+    public void execute() {
         System.out.println("d");
     }
 

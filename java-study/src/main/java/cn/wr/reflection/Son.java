@@ -15,7 +15,7 @@ public class Son extends Father {
     public String girlFriend;
 
 
-    public void getGirlFriendV1(){
+    public void getGirlFriendV1() {
         System.out.println("have enough money");
     }
 
