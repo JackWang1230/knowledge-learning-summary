@@ -36,13 +36,21 @@ public class ExplodeJsonDataDemoUDTF extends GenericUDTF {
             throw new UDFArgumentException("ExplodeMap takes string as a parameter");
         }
 
+        // 此处代表输出的列名和类型 输出一共两列，第一列是month，第二列是amount 并且都是string类型
         ArrayList<String> fieldNames = new ArrayList<String>();
         ArrayList<ObjectInspector> fieldOIs = new ArrayList<ObjectInspector>();
-        fieldNames.add("col1");
-        fieldOIs.add(PrimitiveObjectInspectorFactory.javaStringObjectInspector);
-        fieldNames.add("col2");
+
+        // 这是第一列 输出的列名是month
+        fieldNames.add("month"); // month
+        // 这是第一列 输出的类型是string
         fieldOIs.add(PrimitiveObjectInspectorFactory.javaStringObjectInspector);
 
+        // 这是第二列 输出的列名是amount
+        fieldNames.add("amount"); // amount
+        // 这是第二列 输出的类型是string
+        fieldOIs.add(PrimitiveObjectInspectorFactory.javaStringObjectInspector);
+
+        // 返回值的类型代表了输出的列名和类型
         return ObjectInspectorFactory.getStandardStructObjectInspector(fieldNames,fieldOIs);
     }
 
@@ -59,7 +67,12 @@ public class ExplodeJsonDataDemoUDTF extends GenericUDTF {
         JSONObject jsonObject = JSONObject.parseObject(s);
         JSONArray salary = jsonObject.getJSONArray("salary");
         for (Object o : salary) {
-            forward(o);
+            JSONObject jsonObject1 = JSONObject.parseObject(o.toString());
+            String month = jsonObject1.getString("month");
+            String amount = jsonObject1.getString("amount");
+            // 将多个字符串存入数组
+            String[] strings = {month, amount};
+            forward(strings);
         }
     }
 
@@ -71,5 +84,16 @@ public class ExplodeJsonDataDemoUDTF extends GenericUDTF {
     public static void main(String[] args) {
 
         String json="{\"id\":\"11\",\"name\":\"jack\",\"salary\":[{\"month\":\"1\",\"amount\":1234},{\"month\":\"2\",\"amount\":2345}]}";
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        JSONArray salary = jsonObject.getJSONArray("salary");
+        for (Object o : salary) {
+
+            JSONObject jsonObject1 = JSONObject.parseObject(o.toString());
+            String month = jsonObject1.getString("month");
+            String amount = jsonObject1.getString("amount");
+            // 将多个字符串存入数组
+            String[] strings = {month, amount};
+            // forward(strings);
+        }
     }
 }
