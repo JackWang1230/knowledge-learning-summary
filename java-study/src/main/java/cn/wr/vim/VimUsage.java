@@ -29,7 +29,7 @@ public class VimUsage {
         System.out.println("");
 
         int a = 4 << 1; //(4 * (2*1))
-        // int b = 4<<3; //(4 * (2^3))
+        int b = 4<<3; //(4 * (2^3))
         System.out.println(a);
 
     }
