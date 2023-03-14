@@ -42,7 +42,6 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
 
     /**
      *
-     * @author Taowd
      * TODO  此处用来处理收到的数据中含有中文的时  出现乱码的问题
      * @param buf
      * @return
