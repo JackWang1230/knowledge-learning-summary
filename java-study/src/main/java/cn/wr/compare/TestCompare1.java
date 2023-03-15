@@ -35,6 +35,9 @@ public class TestCompare1 {
             s.sayHello();
         }
 
+
+        System.out.println("----------------------------------");
+
     }
 
 }
