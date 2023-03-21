@@ -72,7 +72,7 @@ public class Insert2Mysql {
      * @param userList
      * @throws SQLException
      */
-    public void InsertUser(List<User> userList) throws SQLException {
+    public void insertUser(List<User> userList) throws SQLException {
 
         // DigestUtils.md5Hex(str);
 
@@ -256,7 +256,7 @@ public class Insert2Mysql {
      * @param itemList
      * @throws SQLException
      */
-    public void InsertItem(List<Item> itemList) throws SQLException {
+    public void insertItem(List<Item> itemList) throws SQLException {
 
 
         String insertItem = "insert into items " +
@@ -839,11 +839,11 @@ public class Insert2Mysql {
 //
         // 商品信息数据
 //        List<Item> items = insert2Mysql.createItems();
-//        insert2Mysql.InsertItem(items);
+//        insert2Mysql.insertItem(items);
 //
 //        // 用户数据
 //        List<User> users = insert2Mysql.createUsers();
-//        insert2Mysql.InsertUser(users);
+//        insert2Mysql.insertUser(users);
 
         //  基于item 和 orderdetails 修正 item_amount
 //        insert2Mysql.insertItemPrice2OrderDetailsBasedOnRel();
