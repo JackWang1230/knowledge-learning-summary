@@ -18,6 +18,7 @@ public class VimUsage {
 
         // 将复制内容粘贴到这里
         // v 进入选择模式 v kkkkkk 选择内容 y复制 p粘贴
+        // test proxy
 
         System.out.println("hello world vim");
         System.out.println("方向键hjkl");
