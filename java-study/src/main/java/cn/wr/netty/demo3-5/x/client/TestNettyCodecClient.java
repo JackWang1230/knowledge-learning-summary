@@ -12,6 +12,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import java.net.InetSocketAddress;
 
 /**
+ * 参考:https://blog.csdn.net/FlyLikeButterfly/article/details/118969637
+ *
  * @author : WangRui
  * @date : 2023/3/2
  */
@@ -33,9 +35,9 @@ public class TestNettyCodecClient {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 ChannelPipeline p = ch.pipeline();
-                p.addLast(new MyClientDecoder());
-                p.addLast(new MyClientEncoder());
-                p.addLast(new MyClientHandler());
+                p.addLast(new cn.wr.netty.demo3.client.MyClientDecoder());
+                p.addLast(new cn.wr.netty.demo3.client.MyClientEncoder());
+                p.addLast(new cn.wr.netty.demo3.client.MyClientHandler());
             }
         });
 

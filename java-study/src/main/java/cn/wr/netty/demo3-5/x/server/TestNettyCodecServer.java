@@ -30,9 +30,9 @@ public class TestNettyCodecServer {
             @Override
             protected void initChannel(SocketChannel channel) throws Exception {
                 ChannelPipeline p = channel.pipeline();
-                p.addLast(new MyServerDecoder());
-                p.addLast(new MyServerEncoder());
-                p.addLast(new MyServerHandler());
+                p.addLast(new cn.wr.netty.demo3.server.MyServerDecoder());
+                p.addLast(new cn.wr.netty.demo3.server.MyServerEncoder());
+                p.addLast(new cn.wr.netty.demo3.server.MyServerHandler());
             }
         });
         try {
