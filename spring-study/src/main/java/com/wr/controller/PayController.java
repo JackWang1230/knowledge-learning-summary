@@ -21,7 +21,7 @@ public class PayController {
 //    PayServiceFactory payServiceFactory;
 
     @GetMapping("/pay")
-    public void pay(@RequestParam(value = "payTypeCode") String payTypeCode) throws Exception {
+    public void pay(@RequestParam(value = "payTypeCode",required = true) String payTypeCode) throws Exception {
 
         // 根据支付编码获取支付服务
         PayService payService = PayServiceFactory.getPayService(payTypeCode);
