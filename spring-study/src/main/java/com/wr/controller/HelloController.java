@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
 
+    /**
+     * 第一个springboot程序
+     * @return
+     */
     @RequestMapping("/index")
     public String sayHello(){
         return "index";
