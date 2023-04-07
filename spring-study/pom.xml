@@ -16,6 +16,15 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>huawei</id>-->
+<!--            <name>Huawei Repository</name>-->
+<!--            <url>https://maven.aliyun.com/maven2/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -94,7 +103,32 @@
             <scope>provided</scope>
         </dependency>
 
-
+        <!-- 导入openstack4j -->
+        <dependency>
+            <groupId>org.pacesys</groupId>
+            <artifactId>openstack4j-core</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pacesys</groupId>
+            <artifactId>openstack4j-connector</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pacesys</groupId>
+            <artifactId>openstack4j-api</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.pacesys</groupId>
+            <artifactId>openstack4j-connector-okhttp</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-log4j12</artifactId>-->
+<!--            <version>1.7.30</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

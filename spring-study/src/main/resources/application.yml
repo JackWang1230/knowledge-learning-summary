@@ -7,3 +7,10 @@ spring:
     username: root  #用户名
     password: 123456  #密码
     driver-class-name: com.mysql.cj.jdbc.Driver  #数据库链接驱动
+
+openstack:
+  keystone:
+    url: http://localhost:5000/v3
+    username: username
+    password: password
+    project: project
