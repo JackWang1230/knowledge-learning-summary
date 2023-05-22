@@ -64,7 +64,7 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.0.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.0.5.RELEASE" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter:5.9.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter:5.10.0-M1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.0.0" level="project" />
@@ -137,9 +137,6 @@
     <orderEntry type="library" name="Maven: com.github.fge:jackson-coreutils:1.6" level="project" />
     <orderEntry type="library" name="Maven: com.github.fge:msg-simple:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.fge:btf:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.pacesys:openstack4j-connector:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.pacesys:openstack4j-api:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.pacesys:openstack4j-connector-okhttp:3.2.0" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
   </component>
 </module>
