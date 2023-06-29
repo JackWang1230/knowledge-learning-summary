@@ -31,8 +31,12 @@ public class HbaseUtil {
      * <p>
      * <p>
      * 单线程没问题，
-     * 多线程场景下，线程A正常创建一个实例，执行了1-3，此时线程B调用getInstance()后发现instance不为空，
+     * 多线程场景下，线程A正常创建一个实例，执行了1-3，但是有的编译器为了性能考虑，会讲指令2和指令3的顺序反过来，
+     * 那么 当线程A 可能先执行了 内存地址指向引用变量 再初始化对象 在这个过程中，线程B调用getInstance()后，
+     * 此时线程A还没完全初始化实例 ，但因为先执行了指令3 此时的instance()地址不为空，
      * 因此会直接返回instance，但此时instance并未被初始化 导致直接为空
+     *
+     * 详细: https://www.cnblogs.com/xz816111/p/8470048.html
      */
     private volatile static Connection conn;
 
