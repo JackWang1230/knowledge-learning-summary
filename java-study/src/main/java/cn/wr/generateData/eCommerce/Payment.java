@@ -1,4 +1,4 @@
-package cn.wr.mysql;
+package cn.wr.generateData.eCommerce;
 
 import lombok.Data;
 import lombok.Getter;

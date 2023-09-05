@@ -1,4 +1,4 @@
-package cn.wr.mysql;
+package cn.wr.generateData.eCommerce;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 
-import static cn.wr.mysql.GenerateUserUtil.sexs;
+import static cn.wr.generateData.eCommerce.GenerateUserUtil.sexs;
 
 /**
  * @author : WangRui

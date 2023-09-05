@@ -3,6 +3,10 @@ package cn.wr.compare;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author RWang
@@ -30,8 +34,25 @@ public class TestCompare  {
         //在外部比较器实现compare方法进行通过比较器排序
         System.out.println("升序排序后：");
         Collections.sort(students,new StudentComparator());
+
+        // 降序
+        List<Student> students1 = students.stream().sorted((x, y) -> y.getAge() - x.getAge()).collect(Collectors.toList());
+
+        // 升序
+        List<Student> students2 = students.stream().sorted(Comparator.comparing(Student::getAge)).collect(Collectors.toList());
+
         // collections.sort 进行排序完成后，数组中原先存储的元素位置会在数组中基于comparable后的数据进行重新排序
         for (Student s : students) {
+            s.sayHello();
+        }
+
+        System.out.println("------");
+        for (Student s : students1) {
+            s.sayHello();
+        }
+
+        System.out.println("------");
+        for (Student s : students2) {
             s.sayHello();
         }
     }

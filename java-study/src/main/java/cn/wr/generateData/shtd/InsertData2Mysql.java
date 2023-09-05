@@ -1,14 +1,14 @@
-package cn.wr.mysql.shtd;
+package cn.wr.generateData.shtd;
 
-import cn.wr.mysql.GenerateUserUtil;
-import cn.wr.mysql.Insert2Mysql;
+import cn.wr.generateData.eCommerce.GenerateUserUtil;
+import cn.wr.generateData.eCommerce.Insert2Mysql;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.*;
 
-import static cn.wr.mysql.GenerateUserUtil.sexs;
+import static cn.wr.generateData.eCommerce.GenerateUserUtil.sexs;
 
 /**
  * @author : WangRui

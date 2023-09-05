@@ -26,7 +26,27 @@ public class Solution69 {
 
     public int mySqrt(int x) {
 
+        if (x==0) return 0;
+        if (x==1) return 1;
 
-        return 1;
+        // 利用二分查找直接解决
+        // 一个数的算数平方根 小于一个数的一半
+        int left =1;
+        int right = x/2;
+        // 直接在区间[left,right]之间定位
+        while (left<right){
+            int mid = left+(right-left+1)/2;
+            // 判断此时中间的mid 平方是否大于 x
+            if(mid*mid>x){
+                // 说明mid的平方是大于x
+                // 区间范围缩小[left,mid-1]
+                right = mid-1;
+            }else {
+                // 所以mid的平方是小于等于x
+                // 区间范围变成[mid,right]
+                left = mid;
+            }
+        }
+        return left;
     }
 }

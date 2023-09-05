@@ -35,9 +35,10 @@ public class QuickSort {
     }
 
     public static void quickSort(int[] array, int low, int high) {
+
+        int position = partition(array, low, high); // 最开始的一层排序完成后
         if (low < high) {
             // 获取划分子数组的位置
-            int position = partition(array, low, high);
             // 左子数组递归调用
             quickSort(array, low, position -1);
             // 右子数组递归调用
@@ -46,8 +47,9 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] array = {6,72,113,11,23};
-        quickSort(array, 0, array.length -1);
+//        int[] array = {6,72,113,11,23};
+        int [] array = {1,5,7,3,2};
+        quickSort(array, 0, array.length-1);
         System.out.println("排序后的结果");
         System.out.println(Arrays.toString(array));
     }

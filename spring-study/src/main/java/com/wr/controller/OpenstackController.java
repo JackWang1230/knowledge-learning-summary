@@ -9,6 +9,8 @@ import org.openstack4j.model.compute.ServerCreate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * OpenStack Controller
  * @author : WangRui
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("clusters")
 public class OpenstackController {
 
-    @Autowired
+    @Resource
     OpenStackClient openStackClient;
 
     /**

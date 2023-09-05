@@ -45,7 +45,7 @@ public class Test11 {
             return;
         }
         midOrderTraversal(root.left);
-        System.out.println(root.value+"");
+        System.out.print(root.value+" ");
         midOrderTraversal(root.right);
     }
 
@@ -57,7 +57,7 @@ public class Test11 {
         }
         postOrderTraversal(root.left);
         postOrderTraversal(root.right);
-        System.out.println(root.value+"");
+        System.out.print(root.value+" ");
     }
 
 
@@ -69,9 +69,11 @@ public class Test11 {
         // 前序遍历
         test11.preOrderTraversal(tree);
 
+        System.out.println("---------------------");
         // 中序遍历
         test11.midOrderTraversal(tree);
 
+        System.out.println("---------------------");
         // 后序遍历
         test11.postOrderTraversal(tree);
     }

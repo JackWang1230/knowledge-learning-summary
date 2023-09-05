@@ -1,4 +1,4 @@
-package cn.wr.mysql;
+package cn.wr.generateData.eCommerce;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

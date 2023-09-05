@@ -62,33 +62,37 @@ public class ChoiceSort {
         return list;
     }
 
-    public int[] choiceSort1(int[] list){
-        // 4 2,1 3,5
-        int length = list.length;
+    public int[] selectMaxSort(int[] list){
 
-        int minPos = 0;
-        for (int i = 0; i < length; i++) {
-             //minPos = i;
-            for (int j = 0; j < length; j++) {
-                // 找出最小位置
-                if (list[j]<list[minPos]){
-                    int tmp = list[j];
-                    list[minPos] = tmp;
-                    list[j] = list[minPos];
+        // 选择排序的实际逻辑就是选择出最大的一个数记录位置
+        // 之后进行替换位置
+        int length = list.length;
+        int pos = 0;
+        for (int i = 0; i < length - 1; i++) {
+
+            pos = i;
+            // 找到最大值位置
+            for (int j = i+1; j < length; j++) {
+                if (list[j]>list[pos]){
+                    pos = j;
                 }
+            }
+            if (pos!=i){
+                int tmp = list[pos];
+                list[pos] = list[i];
+                list[i] = tmp;
             }
 
         }
         return list;
-
-
     }
 
 
     public static void main(String[] args) {
         int [] list = {1,5,7,3,2};
         ChoiceSort choiceSort = new ChoiceSort();
-        int[] ints = choiceSort.choiceSort(list);
+//        int[] ints = choiceSort.choiceSort(list);
+        int[] ints  = choiceSort.selectMaxSort(list);
         for (int anInt : ints) {
             System.out.println(anInt);
         }
