@@ -25,22 +25,22 @@ public class GenDemo<T> {
 
     /**
      * 此方法是一个泛型方法，是一个没有返回参的泛型方法
-     * 在viod前面带有了<E>泛型方法的标识，尖括号内的字母是任意写，A、B、C……都可以
+     * 在void前面带有了<E>泛型方法的标识，尖括号内的字母是任意写，A、B、C……都可以
      * void 前面的E 相当于是一个修饰符 ，并不代表该方法的返回类型
      * 如果把void的<E>去掉，编译会报错提示E cannot be resolved to a type，意思就是无法解析E
      */
-    public <E> void setGenericInfo(E x) {
+    public <E> void setGenericInfo(String a,E x,T m) {
 
-        System.out.println(x);
+        System.out.println(a);
     }
 
 
     /**
-     * 此方法是一个泛型方法，是一个带返回类型的T的泛型方法
-     * 和上面的描述基本一样的，都带了泛型方法的标识符<T>,说明是泛型方法
+     * 此方法是一个泛型方法,<E>表示泛型方法，且是一个带返回类型的T的泛型方法
+     * 和上面的描述基本一样的，都带了泛型方法的标识符<E>,说明是泛型方法
      */
     @SuppressWarnings("unchecked")
-    public <T> T getGenericInfo(T t) {
+    public <E>  T getGenericInfo(T t,E x) {
         return t;
     }
 

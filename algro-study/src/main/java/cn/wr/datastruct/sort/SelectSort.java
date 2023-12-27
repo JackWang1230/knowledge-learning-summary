@@ -12,7 +12,7 @@ public class SelectSort {
     public static void main(String[] args) {
 
         int[] arr = {1, 5, 7, 3, 2, 3, 9};
-        selectSortV9(arr);
+        selectSortV11(arr);
         System.out.println(Arrays.toString(arr));
 
     }
@@ -82,7 +82,6 @@ public class SelectSort {
         System.out.println(Arrays.toString(arr));*/
     }
 
-
     public static void selectSortV1(int[] arr) {
 
         //上来还是基本思想 看成一个值找最小索引
@@ -107,7 +106,6 @@ public class SelectSort {
             }
         }
     }
-
 
     public static void selectSortV2(int[] arr) {
         // 先想一下基本思路 选择排序 就是找到最小的数 和 对应的索引
@@ -135,7 +133,6 @@ public class SelectSort {
 
 
     }
-
 
     public static void selectSortV3(int[] arr) {
 
@@ -335,5 +332,48 @@ public class SelectSort {
         }
     }
 
+    public static void selectSortV10(int[] arr){
+
+        for (int i = 0; i < arr.length - 1; i++) {
+
+            int index = i;
+            int min = arr[i];
+            for (int j = i+1; j < arr.length; j++) {
+
+                if (arr[j]<min){
+                    min = arr[j];
+                    index = j;
+                }
+            }
+            if (index != i){
+
+                int tmp = arr[i];
+                arr[i] = arr[index];
+                arr[index] = tmp;
+            }
+        }
+    }
+
+    public static void selectSortV11(int[] arr){
+
+        for (int i = 0; i < arr.length-1; i++) {
+
+            int index = i;
+            int value = arr[i];
+            for (int j = i+1; j < arr.length; j++) {
+
+                if (arr[j]<value){
+                    index = j;
+                    value = arr[j];
+                }
+            }
+            if (index != i){
+
+                int tmp = arr[i];
+                arr[i] = value;
+                arr[index] =tmp;
+            }
+        }
+    }
 
 }

@@ -15,7 +15,7 @@ public class ShellSort {
         int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
 //        shellSort(arr);
 //        moveShellSort(arr);
-        moveShellSortV8(arr);
+        moveShellSortV10(arr);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -352,6 +352,45 @@ public class ShellSort {
                     index-=gap;
                 }
                 if (index != i){
+                    arr[index] = value;
+                }
+            }
+        }
+    }
+
+    public static void moveShellSortV9(int[] arr){
+
+        for (int gap = arr.length/2; gap >0; gap/=2) {
+
+            for (int i = gap; i < arr.length; i++) {
+
+                int index = i;
+                int value = arr[i];
+                while (index-gap>=0 && arr[index-gap]>value){
+
+                    arr[index] = arr[index-gap];
+                    index-=gap;
+                }
+                if (index != i){
+                    arr[index] = value;
+                }
+            }
+        }
+    }
+
+    public static void moveShellSortV10(int[] arr){
+
+        for (int gap = arr.length/2; gap >0 ; gap/=2) {
+
+            for (int i = gap; i < arr.length; i++) {
+
+                int index = i;
+                int value = arr[i];
+                while (index-gap>=0 && arr[index-gap]>value){
+                    arr[index] = arr[index-gap];
+                    index-=gap;
+                }
+                if (index !=i){
                     arr[index] = value;
                 }
             }

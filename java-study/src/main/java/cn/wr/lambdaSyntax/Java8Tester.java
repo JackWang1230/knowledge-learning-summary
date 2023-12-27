@@ -32,8 +32,14 @@ public class Java8Tester {
         NoneReturnSingleParameter noneReturnSingleParameter = (int a) -> {
             System.out.println("一个参数，没有返回值的 函数式 接口 传入的参数是: a= " + a);
         };
+
         noneReturnSingleParameter.test(10);
+
+        NoneReturnSingleParameterObject noneReturnSingleParameterObject = a-> a.getPassword();
+        User user = new User();
+        noneReturnSingleParameterObject.test(user);
     }
+
 
     @Test
     public void lambda3() {
@@ -85,6 +91,8 @@ public class Java8Tester {
             System.out.println("有一个参数，有返回值的 函数式 接口 入参是 a=" + a + " 返回值为return 后的内容");
             return "字符串";
         };
+
+        SingleReturnSingleParameter singleReturnSingleParameter2 = a-> "ss";
         String test1 = singleReturnSingleParameter1.test(10);
         System.out.println(test1);
     }

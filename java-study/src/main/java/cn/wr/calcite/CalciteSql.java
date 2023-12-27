@@ -23,7 +23,7 @@ public class CalciteSql {
                 .parserConfig(SqlParser.Config.DEFAULT)
                 .build();
 
-        String sql = "select id,name,age from test";
+        String sql = "select id,name,age,from_unixtime(unix_timestamp(),'yyyy-MM-dd HH:mm:ss') date_time from test";
         SqlParser sqlParser = SqlParser.create(sql, config.getParserConfig());
         try {
             SqlNode sqlNode = sqlParser.parseStmt();

@@ -19,7 +19,7 @@ public class CalciteBetween {
                 .parserConfig(SqlParser.Config.DEFAULT)
                 .build();
 
-        String sql = "select id,name,age,datetime from test where datetime between 2021-10-10 00:00:00 and 2021-10-11 00:00:00 ";
+        String sql = "select id,name,age,datetime from test where datetime between '2021-10-10 00:00:00' and '2021-10-11 00:00:00' ";
         SqlParser sqlParser = SqlParser.create(sql, config.getParserConfig());
         try {
             SqlNode sqlNode = sqlParser.parseStmt();

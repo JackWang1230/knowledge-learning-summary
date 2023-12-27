@@ -53,6 +53,8 @@ public class PriceListDetailsSource extends RichSourceFunction<PriceListDetailsI
     public void run(SourceContext<PriceListDetailsInitialEvent> ctx) throws Exception {
 
          int pageSize = parameterTool.getInt(DATA_PAGE_SIZE);
+        int indexOfThisSubtask = getRuntimeContext().getIndexOfThisSubtask();
+        int numberOfParallelSubtasks = getRuntimeContext().getNumberOfParallelSubtasks();
 //        int pageSize = 100;
         String tableName = "price_list_details";
         Map<String, Object> params = new HashMap<>();

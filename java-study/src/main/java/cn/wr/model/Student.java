@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.HashSet;
+
 /**
  * @author RWang
  * @Date 2022/1/27
@@ -19,4 +21,15 @@ public class Student {
 //    public static void main(String[] args) throws JsonProcessingException {
 //        Student.builder().age(1).height(11);
 //    }
+
+
+    public static void main(String[] args) {
+        HashSet<String> strings = new HashSet<>();
+        strings.add("a");
+        strings.add("b");
+        strings.add("c");
+
+        String s = strings.toString();
+        System.out.println(s);
+    }
 }

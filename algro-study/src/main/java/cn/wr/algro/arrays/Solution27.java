@@ -29,12 +29,92 @@ public class Solution27 {
 
     }
 
+
+    public static int removeElementV5(int[] arr,int val){
+
+        // 两个索引搞定
+        int fastIndex=0;
+        int slowIndex=0;
+        for ( fastIndex = 0; fastIndex < arr.length; fastIndex++) {
+
+            if (val != arr[fastIndex]){
+                arr[slowIndex] = arr[fastIndex];
+                slowIndex++;
+            }
+        }
+        return slowIndex;
+
+    }
+    public static int removeElementV4(int[] arr,int val){
+
+        // 双指针的思路解决
+        int minIndex=0;
+        for (int i = 0; i < arr.length; i++) {
+
+            if (val != arr[i]){
+                arr[minIndex]= arr[i];
+                minIndex++;
+            }
+        }
+        return minIndex;
+
+    }
+    public static int removeElementV3(int[] arr,int val){
+
+        int index2=0;
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] != val){
+                arr[index2]=arr[i];
+                index2++;
+            }
+        }
+        return index2;
+    }
+
+/*    public static int  removeElementV1(int[] arr,int val){
+
+        int i =0;
+        int length = arr.length;
+        while (i<arr.length){
+
+            if (val==arr[i]){
+                length--;
+            }
+            i++;
+        }
+        return length;
+    }*/
+
+    public static int removeElementV2(int[] arr,int target){
+
+        // 这道题可以理解成一个双指针的问题
+        int fastIndex=0;
+        int slowIndex=0;
+        while (fastIndex<arr.length){
+            if (arr[fastIndex] != target){
+
+                arr[slowIndex] = arr[fastIndex];
+                slowIndex++;
+            }
+            fastIndex++;
+
+
+        }
+        return slowIndex;
+
+    }
+
     public static void main(String[] args) {
 
         int[] nums = {1,2,3,4,2,3};
         int val = 2;
-        Solution27 solution27 = new Solution27();
-        int i = solution27.removeElement(nums, val);
+        int i = removeElementV5(nums, val);
+        System.out.println(i);
+//        Solution27 solution27 = new Solution27();
+//        int i = solution27.removeElement(nums, val);
+//        int i1 = removeElementV1(nums, val);
+//        System.out.println(i1);
 
     }
 }

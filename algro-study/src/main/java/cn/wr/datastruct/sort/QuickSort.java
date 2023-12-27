@@ -13,9 +13,13 @@ public class QuickSort {
 
 //        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         int[] arr = {-9, 45, 3, 0, 1, 2, 5};
+//        int[] arr = {9, 8, 7, 6, 5, 4, 3};
 //        int[] arr1 = {-9, 9, -9, -9, -9, -9, 5};
-        quickSortV4(arr, 0, arr.length - 1);
+        quickSortV8(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
+
+//        int ff = ffV1(5);
+//        System.out.println(ff);
     }
 
     public static void quickSort(int[] arr, int left, int right) {
@@ -105,11 +109,11 @@ public class QuickSort {
             arr[r] = tmp;
 
             // 还有一种特殊情况 也算是优化把
-            if (arr[l] == pivot){   // 当换完位置以后 如果 arr[l] == pivot，说明此时左边的值都是比pivot小的值 此时只需要 右边的下标继续移动即可
+            if (arr[l] == pivot) {   // 当换完位置以后 如果 arr[l] == pivot，说明此时左边的值都是比pivot小的值 此时只需要 右边的下标继续移动即可
                 r--;                // 直到找到比中轴值小的数 再继续替换位置
             }
             // 同理
-            if (arr[r] == pivot){
+            if (arr[r] == pivot) {
                 l++;
             }
 
@@ -131,63 +135,63 @@ public class QuickSort {
     }
 
 
-    public static void quickSortV2(int[] arr,int left, int right){
+    public static void quickSortV2(int[] arr, int left, int right) {
 
         // 快速排序底层实现逻辑很简单 就是找一个中轴值 把比他大的放右边 比他小的放左边
         // 之后不停的递归重复即可
 
         int l = left;
         int r = right;
-        int pivot = arr[(left+right)/2];
+        int pivot = arr[(left + right) / 2];
 
-       while (l<r){ // 只要保证左边比右边小 就不停的移动左右下标
+        while (l < r) { // 只要保证左边比右边小 就不停的移动左右下标
 
-           while (arr[l]<pivot){ // 左边比中轴值小
+            while (arr[l] < pivot) { // 左边比中轴值小
 
-               l++; // 直到找到一个大于等于的值的下标l
-           }
+                l++; // 直到找到一个大于等于的值的下标l
+            }
 
-           // 右边同理 找到小于等于中轴值的小标r 停下来
-           while ( arr[r]>pivot){
-               r-- ;
-           }
+            // 右边同理 找到小于等于中轴值的小标r 停下来
+            while (arr[r] > pivot) {
+                r--;
+            }
 
-           // 找到一个退出点
-           if (l==r){
-               break;
-           }
+            // 找到一个退出点
+            if (l == r) {
+                break;
+            }
 
-           // 不满足的时候 需要将左边和右边的值进行交换位置 一直到 满足左边的值都比中轴值小 右边的值都比中轴值大
+            // 不满足的时候 需要将左边和右边的值进行交换位置 一直到 满足左边的值都比中轴值小 右边的值都比中轴值大
 
-           int tmp = arr[l];
-           arr[l] =arr[r];
-           arr[r] = tmp;
+            int tmp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = tmp;
 
-           // 优化部分 若交换之后出现相等
-           if (arr[l] == pivot){
-               // 这种情况说明昨天都是比中轴值小的数了
-               // 此时只需要将右下标移动一位后继续比较即可
-               r--;
-           }
+            // 优化部分 若交换之后出现相等
+            if (arr[l] == pivot) {
+                // 这种情况说明昨天都是比中轴值小的数了
+                // 此时只需要将右下标移动一位后继续比较即可
+                r--;
+            }
 
-           // 同理
-           if (arr[r]== pivot){
-               l++;
-           }
+            // 同理
+            if (arr[r] == pivot) {
+                l++;
+            }
 
-       }
+        }
 
-       if(left<r){
-           quickSortV2(arr,left,r-1);
-       }
-       if (right>l){
-           quickSortV2(arr,l+1,arr.length-1);
-       }
+        if (left < r) {
+            quickSortV2(arr, left, r - 1);
+        }
+        if (right > l) {
+            quickSortV2(arr, l + 1, arr.length - 1);
+        }
 
     }
 
 
-    public static void quickSortV3(int[] arr, int left,int right){
+    public static void quickSortV3(int[] arr, int left, int right) {
 
 
         // 快速排序的底层逻辑就是说 选择一个中轴值 然后依次从左边和右边选一个值和他进行比较
@@ -195,16 +199,16 @@ public class QuickSort {
 
         int l = left;
         int r = right;
-        int pivot= arr[(right+left)/2];
-        while (l<r){
+        int pivot = arr[(right + left) / 2];
+        while (l < r) {
 
-            while (arr[l]<pivot){
+            while (arr[l] < pivot) {
                 l++;
             }
-            while (arr[r]>pivot){
+            while (arr[r] > pivot) {
                 r--;
             }
-            if (l==r){
+            if (l == r) {
                 break;
             }
 
@@ -213,40 +217,40 @@ public class QuickSort {
             arr[l] = arr[r];
             arr[r] = tmp;
 
-            if (arr[l] == pivot){
+            if (arr[l] == pivot) {
                 r--;
             }
-            if (arr[r] == pivot){
+            if (arr[r] == pivot) {
                 l++;
             }
         }
 
 
-        if (left<r){
+        if (left < r) {
 
-            quickSortV3(arr,left,r-1);
+            quickSortV3(arr, left, r - 1);
         }
-        if (right>l){
-            quickSortV3(arr,l+1,right);
+        if (right > l) {
+            quickSortV3(arr, l + 1, right);
         }
 
     }
 
-    public static void quickSortV4(int[] arr,int left,int right){
+    public static void quickSortV4(int[] arr, int left, int right) {
 
         int l = left;
         int r = right;
-        int pivot = arr[(left+right)/2];
-        while (l<r){
+        int pivot = arr[(left + right) / 2];
+        while (l < r) {
 
-            while (arr[l]<pivot){
+            while (arr[l] < pivot) {
                 l++;
             }
-            while (arr[r]>pivot){
+            while (arr[r] > pivot) {
                 r--;
             }
 
-            if (l==r){
+            if (l == r) {
                 break;
             }
 
@@ -256,19 +260,278 @@ public class QuickSort {
             arr[l] = arr[r];
             arr[r] = tmp;
 
-            if (arr[l]==pivot){
+            if (arr[l] == pivot) {
                 r--;
             }
-            if (arr[r]== pivot){
+            if (arr[r] == pivot) {
                 l++;
             }
         }
 
+        if (left < r) {
+            quickSortV4(arr, left, r - 1);
+        }
+        if (right > l) {
+            quickSortV4(arr, l + 1, right);
+        }
+    }
+
+    public static void quickSortV5(int[] arr, int left, int right) {
+
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) / 2];
+        while (l < r) {
+
+            while (arr[l] < pivot) {
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l == r) {
+                break;
+            }
+            int tmp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = tmp;
+
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
+            }
+        }
+        if (left < r) {
+            quickSortV5(arr, left, r - 1);
+        }
+        if (right > l) {
+            quickSort(arr, l + 1, right);
+        }
+
+
+    }
+
+    public static void quickSortV6(int[] arr, int left, int right) {
+
+        int l = left;
+        int r = right;
+        int pivot = arr[(left + right) >> 1];
+        while (l < r) {
+
+            while (arr[l] < pivot) {
+
+                l++;
+            }
+            while (arr[r] > pivot) {
+                r--;
+            }
+            if (l == r) {
+                break;
+            }
+
+            // 交换位置啊
+            int tmp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = tmp;
+
+            if (arr[l] == pivot) {
+                r--;
+            }
+            if (arr[r] == pivot) {
+                l++;
+            }
+
+        }
+        if (left < r) {
+            quickSortV6(arr, left, r - 1);
+        }
+        if (right > l) {
+            quickSortV6(arr, l + 1, right);
+        }
+    }
+
+    public static void quickSortV7(int[] arr,int left,int right){
+
+        // 底层逻辑 找到中轴值 左边都是比他小的 右边都是比他大的
+        int l = left;
+        int r = right;
+        int pivot = arr[(left+right)>>1];
+        while (l<r){
+
+            while (arr[l]<pivot){
+                l++; // 直到找到比他大的数
+            }
+            while (arr[r]>pivot){
+                r--; // 直到找到比他小的数
+            }
+
+            if (l==r){
+                break;
+            }
+
+            // 交换位置
+            int tmp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = tmp;
+
+            if (arr[l]==pivot){
+                r--;
+            }
+            if (arr[r]==pivot){
+                l++;
+            }
+        }
         if (left<r){
-            quickSortV4(arr,left,r-1);
+            quickSortV7(arr,left,r-1);
         }
         if (right>l){
-            quickSortV4(arr,l+1,right);
+            quickSortV7(arr,l+1,right);
         }
+    }
+
+    public static void quickSortV8(int[] arr,int left,int right){
+
+        //  int[] arr = {9, 8, 7, 6, 5, 4, 3};
+        // 核心思想 一个中轴值 一个左边索引 一个右边索引
+        int l = left;
+        int r = right;
+        int pivot = arr[(left+right)>>1];
+        while (l<r){
+            while (arr[l]<pivot){
+                l++;
+            }
+            while (arr[r]>pivot){
+                r--;
+            }
+            if (l == r){
+                break;
+            }
+            // 交换位置
+            int tmp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = tmp;
+
+            if (arr[l]==pivot){
+                r--;
+            }
+            if (arr[r]==pivot){
+                l++;
+            }
+        }
+        if (left<r){
+            quickSortV8(arr,left,r-1);
+        }
+        if (right>l){
+            quickSortV8(arr,l+1,right);
+        }
+
+
+
+    }
+
+    public static int ff(int n) {
+
+        // F(0) = 0,   F(1) = 1
+        //F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+/*
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else if(n>=2) {
+            return ff(n - 1) + ff(n - 2);
+        }*/
+
+
+/*        int tmp = 0;
+        int a = 0;
+        int b = 1;
+        for (int i = 0; i <= n; i++) {
+
+            // 考虑使用一个变量
+            if (n == 0) {
+                return a;
+            }
+            if (n == 1) {
+                return b;
+            }
+            if (i >= 2) {
+                tmp = a + b;
+                a = b; // 重新给a,b 赋值即可
+                b = tmp;
+            }
+        }
+        return tmp;*/
+
+        int pre1 = 0;
+        int pre2 = 1;
+        int result = 0;
+        if (n==1){
+            return  1;
+        }
+        if (n==0){
+            return 0;
+        }
+        int i=2;
+        while (n >=i){
+
+            result = pre1+pre2;
+            pre1 = pre2;
+            pre2 = result;
+            i++;
+        }
+        return result;
+
+    }
+
+    public static int ffV1(int n){
+        // 斐波拉切数列 非递归
+        // F(0) = 0,   F(1) = 1
+        //F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+
+        int pre1= 0;
+        int pre2 = 1;
+        int result=0;
+        if (n==0){
+            return 0;
+        }if (n==1){
+            return 1;
+        }
+        int i=2;
+        while (n>=i){
+            result = pre1+pre2;
+
+            // 核心思想需要记录这次结果后的前两个值 ，因为需要后续用到
+            pre1 = pre2;
+            pre2 = result;
+            i++;
+        }
+        return result;
+    }
+
+    public static int ffV2(int n){
+
+        // 核心思想记录当前值的前两个值
+
+        int pre1 = 0;
+        int pre2 = 1;
+        int result =0;
+        int i=2;
+        if (n==0){
+            return 0;
+
+        }if (n ==1){
+            return 1;
+        }
+        while (n>=i){
+            result = pre1+pre2;
+            pre1 = pre2; // [0 [1] [1] 2] 理解成一个个的窗口 ，窗口的长度为2
+            pre2 = result;
+            i++;
+        }
+        return result;
+
     }
 }

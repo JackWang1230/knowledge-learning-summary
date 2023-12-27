@@ -14,7 +14,7 @@ public class InsertSort {
     public static void main(String[] args) {
 
         int[] arr = {11, 34, 2, 8, 5}; // 2 11 34 8 5
-        insertSortV10(arr);
+        insertSortV12(arr);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -70,7 +70,6 @@ public class InsertSort {
 
     }
 
-
     public static void insertSortV2(int[] arr){
         // 核心思想 左边看成一个有序数组 右边看成一个无序数组 依次呐右边无序数组第一个值跟左边数组比较
 
@@ -91,7 +90,6 @@ public class InsertSort {
 
 
     }
-
 
     public static void insertSortV3(int[] arr){
 
@@ -261,6 +259,59 @@ public class InsertSort {
                 arr[index+1]= value;
             }
         }
+    }
+
+    public static void insertSortV11(int[] arr){
+
+        for (int i = 0; i < arr.length - 1; i++) {
+
+            int index = i;
+            int value = arr[i+1];
+            while (index>=0 && arr[index]>value){
+
+                arr[index+1] = arr[index];
+                index--;
+            }
+            if (index != i){
+                arr[index+1] = value;
+            }
+        }
+    }
+
+    public static void insertSortV12(int[] arr){
+
+        for (int i = 0; i < arr.length-1; i++) {
+
+            // 底层逻辑就是 一个有序和一个无序
+            int index =i;
+            int value = arr[i+1];
+            while (index>=0 && arr[index]>value){
+
+                arr[index+1] = arr[index];
+                index--;
+            }
+            if (index != i){
+                arr[index+1] = value;
+            }
+
+        }
+    }
+
+    public static void insertSortV13(int[] arr){
+
+        // 2 11 34 8 5
+        for (int i = 0; i < arr.length - 1; i++) {
+            int index = i;
+            int value = arr[index+1];
+            while (index>=0 && arr[index]>value){
+                arr[index+1] = arr[index];
+                index--;
+            }
+            if (index != i){
+                arr[index+1] = value;
+            }
+        }
+
     }
 
 

@@ -1,5 +1,7 @@
 package cn.wr.algro.arrays;
 
+import java.util.Arrays;
+
 /**
  * @author RWang
  * @Date 2022/3/29
@@ -32,10 +34,79 @@ public class Solution977 {
        return newNums;
     }
 
+    public static int[] sortedSquareV3(int[] arr){
+
+        int l = 0;
+        int r = arr.length-1;
+        int i = arr.length-1;
+        int[] newArr = new int[arr.length];
+        while (l<=r){
+
+            if (arr[l]*arr[l]>arr[r]*arr[r]){
+                newArr[i] = arr[l]*arr[l];
+                i--;
+                l++;
+            }else {
+                newArr[i] = arr[r]*arr[r];
+                i--;
+                r--;
+            }
+        }
+        return newArr;
+    }
+
+    public static int[] sortedSquareV2(int[] arr){
+
+        int l = 0;
+        int r = arr.length-1;
+        int[] newArr = new int[arr.length];
+        int i=arr.length-1;
+        while (l<=r){
+
+           if (arr[l]*arr[l]>=arr[r]*arr[r]){
+
+               newArr[i]= arr[l]*arr[l];
+               i--;
+               l++;
+           }else {
+               newArr[i]= arr[r]*arr[r];
+               i--;
+               r--;
+           }
+
+        }
+        return newArr;
+
+    }
+
+    public static int[] sortedSquaresV1(int[] arr){
+
+        int [] newArr = new int[arr.length];
+        int l = 0;
+        int r = arr.length-1;
+        int index = arr.length-1;
+        while (l<=r){
+            if (arr[l]*arr[l]<=arr[r]*arr[r]){
+                newArr[index] = arr[r]*arr[r];
+                index--;
+                r--;
+            }
+            if (arr[l]*arr[l]>arr[r]*arr[r]){
+                newArr[index]= arr[l]*arr[l];
+                index--;
+                l++;
+            }
+        }
+        return newArr;
+    }
+
     public static void main(String[] args) {
         int[] nums ={-7,-3,2,3,11};
-        Solution977 solution977 = new Solution977();
-        solution977.sortedSquares(nums);
+
+        int[] ints = sortedSquareV3(nums);
+        System.out.println(Arrays.toString(ints));
+//        Solution977 solution977 = new Solution977();
+//        solution977.sortedSquares(nums);
     }
 
 }
