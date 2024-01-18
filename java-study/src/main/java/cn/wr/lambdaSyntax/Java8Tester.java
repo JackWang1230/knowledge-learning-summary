@@ -3,6 +3,11 @@ package cn.wr.lambdaSyntax;
 import org.junit.Test;
 
 /**
+ *
+ * 函数式接口只能有一个抽象方法 否则会编译报错
+ * 通常函数式接口 如果实例化成一个对象 可以通过lambda表达式来实现(实际实例化的对象就是抽象方法中返回的对象类型)
+ * 可参考样例ApplicationContextFactory 只有一个create()抽象方法
+ *
  * @author RWang
  * @Date 2022/2/23
  */

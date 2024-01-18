@@ -41,8 +41,11 @@ public class GenDemo<T> {
      */
     @SuppressWarnings("unchecked")
     public <E>  T getGenericInfo(T t,E x) {
+
+        Class<?> aClass = t.getClass();
         return t;
     }
+
 
     public static void main(String[] args) {
 

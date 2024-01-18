@@ -1,13 +1,11 @@
 package cn.wr.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.EnumSet;
 import java.util.Set;
 
 @Getter
-@AllArgsConstructor
 public enum UploadResourceEnum {
 
     File("file", "filePath"),
@@ -17,6 +15,10 @@ public enum UploadResourceEnum {
     private final String name;
     private final String path;
 
+    UploadResourceEnum(String name, String path) {
+        this.name = name;
+        this.path = path;
+    }
     private static final Set<UploadResourceEnum> ALL =EnumSet.allOf(UploadResourceEnum.class);
 
     private static UploadResourceEnum getEnumByName(String name){
